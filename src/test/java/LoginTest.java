@@ -1,3 +1,4 @@
+import com.beust.ah.A;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -5,25 +6,23 @@ import org.openqa.selenium.WebElement;
 import training.ActionsHelper;
 import training.BaseTest;
 
-public class RegisterTest extends BaseTest {
+public class LoginTest extends BaseTest {
 
     ActionsHelper actionsHelper = new ActionsHelper();
     WebElement myAccount;
-    String fullName = "Dace Altpano";
     String email = "dacekib883@altpano.com";
+    String wrongEmail = "dacekib883@altpano2.com";
     String password = "Text1234";
+    String fullName = "Dace Altpano";
     String profileName;
 
     @Test
-    public void registerTest() {
+    public void loginTest() {
         myAccount = driver.findElement(By.xpath("//*[.='Contul meu']"));
         actionsHelper.clickOnElement(myAccount);
 
-        WebElement registerLink = driver.findElement(By.xpath("//*[.='Înregistrare']"));
-        actionsHelper.clickOnElement(registerLink);
-
-        WebElement fullNameTextbox = driver.findElement(By.id("name"));
-        actionsHelper.fillInText(fullNameTextbox, fullName);
+        WebElement loginLink = driver.findElement(By.xpath("//*[.='Autentificare']"));
+        actionsHelper.clickOnElement(loginLink);
 
         WebElement emailTextbox = driver.findElement(By.id("email"));
         actionsHelper.fillInText(emailTextbox, email);
@@ -31,17 +30,8 @@ public class RegisterTest extends BaseTest {
         WebElement passwordTextbox = driver.findElement(By.id("password"));
         actionsHelper.fillInText(passwordTextbox, password);
 
-        WebElement confirmPasswordTextbox = driver.findElement(By.id("password-confirm"));
-        actionsHelper.fillInText(confirmPasswordTextbox, password);
-
         WebElement submitButton = driver.findElement(By.xpath("//*[contains(text(), 'Trimite')]"));
         actionsHelper.submitButton(submitButton);
-
-        WebElement accountTitle = driver.findElement(By.xpath("//*[.='Date cont']"));
-        accountTitle.isDisplayed();
-
-        WebElement homeMenu = driver.findElement(By.xpath("//a[.='Acasă']"));
-        actionsHelper.clickOnElement(homeMenu);
 
         myAccount = driver.findElement(By.xpath("//*[.='Contul meu']"));
         actionsHelper.clickOnElement(myAccount);
@@ -53,24 +43,18 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    public void registerWithRegisteredAccountTest() {
+    public void loginWithWrongEmailTest() {
         myAccount = driver.findElement(By.xpath("//*[.='Contul meu']"));
         actionsHelper.clickOnElement(myAccount);
 
-        WebElement registerLink = driver.findElement(By.xpath("//*[.='Înregistrare']"));
-        actionsHelper.clickOnElement(registerLink);
-
-        WebElement fullNameTextbox = driver.findElement(By.id("name"));
-        actionsHelper.fillInText(fullNameTextbox, fullName);
+        WebElement loginLink = driver.findElement(By.xpath("//*[.='Autentificare']"));
+        actionsHelper.clickOnElement(loginLink);
 
         WebElement emailTextbox = driver.findElement(By.id("email"));
-        actionsHelper.fillInText(emailTextbox, email);
+        actionsHelper.fillInText(emailTextbox, wrongEmail);
 
         WebElement passwordTextbox = driver.findElement(By.id("password"));
         actionsHelper.fillInText(passwordTextbox, password);
-
-        WebElement confirmPasswordTextbox = driver.findElement(By.id("password-confirm"));
-        actionsHelper.fillInText(confirmPasswordTextbox, password);
 
         WebElement submitButton = driver.findElement(By.xpath("//*[contains(text(), 'Trimite')]"));
         actionsHelper.submitButton(submitButton);
