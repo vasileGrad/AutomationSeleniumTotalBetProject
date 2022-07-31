@@ -2,8 +2,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import training.ActionsHelper;
-import training.BaseTest;
+import totalBet.ActionsHelper;
+import totalBet.BaseTest;
 
 import java.util.List;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package training;
+package totalBet;
 
 import org.openqa.selenium.WebElement;
 
