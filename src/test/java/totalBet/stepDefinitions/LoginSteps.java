@@ -16,40 +16,29 @@ import totalBet.ActionsHelper;
 
 import java.time.Duration;
 
-public class RegistrationSteps {
+public class LoginSteps {
 
     WebDriver driver;
-
     private ActionsHelper actionsHelper = new ActionsHelper();
-
     @FindBy(xpath = "//*[.='Contul meu']")
     private WebElement myAccount;
-    @FindBy(xpath = "//*[.='Înregistrare']")
-    private WebElement registerLink;
-    @FindBy(id = "name")
-    private WebElement fullNameTextbox;
+    @FindBy(xpath = "//*[.='Autentificare']")
+    private WebElement loginLink;
     @FindBy(id = "email")
     private WebElement emailTextbox;
     @FindBy(id = "password")
     private WebElement passwordTextbox;
-    @FindBy(id = "password-confirm")
-    private WebElement confirmPasswordTextbox;
     @FindBy(xpath = "//*[contains(text(), 'Trimite')]")
     private WebElement submitButton;
-    @FindBy(xpath = "//*[.='Date cont']")
-    private WebElement accountTitle;
-    @FindBy(xpath = "//a[.='Acasă']")
-    private WebElement homeMenu;
     @FindBy(xpath = "//*[@class='auth-user']")
     private WebElement profileNameRegistered;
     @FindBy(xpath = "//*[@role='alert']")
     private WebElement emailTakenAlert;
 
-    String fullName = "Dace Altpano";
     String email = "dacekib883@altpano.com";
     String password = "Text1234";
 
-    /*@Before
+    @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\Endava\\Internship\\Courses\\Technologies\\Selenium\\ChromeDriver\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
@@ -62,32 +51,36 @@ public class RegistrationSteps {
     @After
     public void tearDown() {
         driver.quit();
-    }*/
-
-    @Given("I click on registration menu")
-    public void clickOnRegistrationMenu() {
-        PageFactory.initElements(driver, this);
-        actionsHelper.clickOnElement(myAccount);
-        actionsHelper.clickOnElement(registerLink);
     }
 
-    @When("I fill in registration form details")
-    public void fillInRegistrationForm() {
-        actionsHelper.fillInText(fullNameTextbox, fullName);
+    @Given("I click on login menu")
+    public void clickOnLoginMenu() {
+        PageFactory.initElements(driver, this);
+        actionsHelper.clickOnElement(myAccount);
+        actionsHelper.clickOnElement(loginLink);
+    }
+
+    @When("I fill in valid login email and password")
+    public void fillInValidLoginCredentials() {
         actionsHelper.fillInText(emailTextbox, email);
         actionsHelper.fillInText(passwordTextbox, password);
-        actionsHelper.fillInText(confirmPasswordTextbox, password);
         actionsHelper.submitButton(submitButton);
     }
 
-    @Then("I have successfully completed the registration")
-    public void successfullyCompletedRegistration() {
-        accountTitle.isDisplayed();
-        actionsHelper.clickOnElement(myAccount);
-        Assert.assertTrue("The profile name is different", profileNameRegistered.getText().contains(fullName));
+    @When("^I fill invalid ([^\"]*) and valid ([^\"]*)$")
+    public void fillInvalidEmailAndValidPassword(String wrongEmail, String password) {
+        actionsHelper.fillInText(emailTextbox, wrongEmail);
+        actionsHelper.fillInText(passwordTextbox, password);
+        actionsHelper.submitButton(submitButton);
     }
 
-    @Then("I receive an error message")
+    @Then("I should see my profile page")
+    public void successfullyLoggedIn() {
+        actionsHelper.clickOnElement(myAccount);
+        Assert.assertTrue("The profile name is different", profileNameRegistered.isDisplayed());
+    }
+
+    @Then("I should receive an error message")
     public void receivingErrorMessage() {
         Assert.assertTrue("The email has not been taken", emailTakenAlert.isDisplayed());
     }

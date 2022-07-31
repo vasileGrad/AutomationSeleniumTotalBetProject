@@ -1,6 +1,5 @@
 Feature: Registration Form
 
-  @ignore
   Scenario: As a user I want to register
     Given I click on registration menu
     When I fill in registration form details

@@ -6,9 +6,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/totalBet/Registration.feature",
+        features = "src/test/resources/totalBet/Login.feature",
         glue = "totalBet/stepDefinitions",
         tags = ("not @ignore")
 )
-public class RegisterTest {
+public class LoginRunner {
 }
