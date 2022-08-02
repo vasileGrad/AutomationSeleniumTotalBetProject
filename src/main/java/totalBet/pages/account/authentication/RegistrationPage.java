@@ -1,6 +1,5 @@
 package totalBet.pages.account.authentication;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +8,8 @@ import totalBet.common.ActionsHelper;
 import totalBet.constants.Constants;
 
 import java.util.HashMap;
+
+import static org.junit.Assert.assertTrue;
 
 public class RegistrationPage {
 
@@ -44,7 +45,7 @@ public class RegistrationPage {
     @FindBy(xpath = "//*[@role='alert']")
     private WebElement emailTakenAlert;
 
-    public void clickOnRegistrationMenu() {
+    public void clickOnRegistrationLink() {
         actionsHelper.clickOnElement(myAccount);
         actionsHelper.clickOnElement(registerLink);
     }
@@ -61,10 +62,10 @@ public class RegistrationPage {
         accountTitle.isDisplayed();
         actionsHelper.clickOnElement(myAccount);
         Thread.sleep(Constants.SHORT_SLEEP);
-        Assert.assertTrue("The profile name is different", profileNameRegistered.getText().equals(data.get("fullName")));
+        assertTrue("The profile name is different", profileNameRegistered.getText().equals(data.get("fullName")));
     }
 
     public void receivingRegistrationErrorMessage() {
-        Assert.assertTrue("The email has not been taken", emailTakenAlert.isDisplayed());
+        assertTrue("The email has not been taken", emailTakenAlert.isDisplayed());
     }
 }

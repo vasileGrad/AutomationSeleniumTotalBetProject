@@ -2,8 +2,9 @@
 Feature: Place tickets
 
   Background: Login user
-    Given I click on login menu
+    Given I click on login link
     When I fill in valid login email and password
+    And I click on submit button
     Then I should see my profile page
 
   Scenario: As a registered user I want to place a sports bet ticket and I can verify that the correct number of tickets appear in the right list

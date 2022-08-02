@@ -19,6 +19,16 @@ public class TestData {
         return loginFormData;
     }
 
+    public static HashMap<String, String> accountSettingsFormTestData() {
+        HashMap<String, String> accountSettingsFormData = new HashMap<>();
+        accountSettingsFormData.put("fullName", "Dace Altpano");
+        accountSettingsFormData.put("email", "dacekib883@altpano.com");
+        accountSettingsFormData.put("phone", "0743123456");
+        accountSettingsFormData.put("actualPassword", "Text1234");
+        accountSettingsFormData.put("newPassword", "1234");
+        return accountSettingsFormData;
+    }
+
     public static HashMap<String, String> sportsBetTicketTestData() {
         HashMap<String, String> sportsBetTicketData = new HashMap<>();
         sportsBetTicketData.put("numberEvents", "3");

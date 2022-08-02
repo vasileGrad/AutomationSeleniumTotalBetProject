@@ -9,6 +9,7 @@ public class ActionsHelper {
     }
 
     public void fillInText(WebElement element, String text) {
+        element.clear();
         element.sendKeys(text);
     }
 

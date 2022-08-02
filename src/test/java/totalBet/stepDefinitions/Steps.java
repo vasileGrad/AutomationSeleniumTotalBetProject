@@ -13,6 +13,7 @@ import totalBet.constants.Constants;
 import totalBet.data.TestData;
 import totalBet.pages.account.authentication.LoginPage;
 import totalBet.pages.account.authentication.RegistrationPage;
+import totalBet.pages.account.profile.AccountSettingsPage;
 import totalBet.pages.account.ticket.sportsBet.SportsBetPage;
 
 import java.time.Duration;
@@ -22,6 +23,7 @@ public class Steps {
     public RegistrationPage registrationPage;
     public LoginPage loginPage;
     public SportsBetPage sportsBetPage;
+    public AccountSettingsPage accountSettingsPage;
 
     @Before
     public void setUp() {
@@ -30,12 +32,12 @@ public class Steps {
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
         driver.get("https://totalbet.ro/");
-        //driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Constants.LONG_WAIT));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Constants.SHORT_TIME_SECONDS));
 
         registrationPage = new RegistrationPage(driver);
         loginPage = new LoginPage(driver);
         sportsBetPage = new SportsBetPage(driver);
+        accountSettingsPage = new AccountSettingsPage(driver);
     }
 
     @After
@@ -44,9 +46,9 @@ public class Steps {
     }
 
     // Registration Steps   - Start
-    @Given("^I click on registration menu$")
-    public void clickOnRegistrationMenu() {
-        registrationPage.clickOnRegistrationMenu();
+    @Given("^I click on registration link$")
+    public void clickOnRegistrationLink() {
+        registrationPage.clickOnRegistrationLink();
     }
 
     @When("^I fill in registration form details$")
@@ -66,9 +68,9 @@ public class Steps {
 
 
     // Login Steps   - Start
-    @Given("^I click on login menu$")
-    public void clickOnLoginMenu() {
-        loginPage.clickOnLoginMenu();
+    @Given("^I click on login link$")
+    public void clickOnLoginLink() {
+        loginPage.clickOnLoginLink();
     }
 
     @When("^I fill in valid login email and password$")
@@ -78,7 +80,17 @@ public class Steps {
 
     @When("^I fill invalid email as (.*) and valid password as (.*)$")
     public void fillInvalidEmailAndValidPassword(String wrongEmail, String password) {
-        loginPage.fillInvalidEmailAndValidPassword(wrongEmail, password);
+        loginPage.fillInEmailAndPassword(wrongEmail, password);
+    }
+
+    @When("^I fill valid email as (.*) and invalid password as (.*)$")
+    public void fillValidEmailAndInvalidPassword(String email, String wrongPassword) {
+        loginPage.fillInEmailAndPassword(email, wrongPassword);
+    }
+
+    @And("^I click on submit button$")
+    public void clickOnSubmitButton() {
+        loginPage.clickOnSubmitButton();
     }
 
     @Then("^I should see my profile page$")
@@ -91,9 +103,70 @@ public class Steps {
         loginPage.verifyAuthenticatedUser();
     }
 
+    @And("I should see logout button")
+    public void verifyLogoutButton() {
+        loginPage.verifyLogoutButton();
+    }
+
+    @When("I click on logout button")
+    public void clickOnLogoutButton() {
+        loginPage.clickOnLogoutButton();
+    }
+
+    @Then("I should see login link")
+    public void verifyLoginLink() throws InterruptedException {
+        loginPage.verifyLoginLink();
+    }
+
     @Then("^I should receive a login error message$")
     public void receivingLoginErrorMessage() {
         loginPage.receivingLoginErrorMessage();
+    }
+
+    @Then("I should receive email and password error messages")
+    public void receiveEmailAndPasswordErrorMessage() {
+        loginPage.receiveEmailAndPasswordErrorMessages();
+    }
+
+    // Account Settings
+    @When("I click on account settings link")
+    public void clickOnAccountSettingsLink() {
+        accountSettingsPage.clickOnAccountSettingsLink();
+    }
+
+    @Then("I should see the account settings page")
+    public void verifyAccountSettingsPage() {
+        accountSettingsPage.verifyAccountSettingsPage();
+    }
+
+    @And("I should have the same name and email")
+    public void verifyAccountSettingsNameAndEmail() {
+        accountSettingsPage.verifyAccountSettingsNameAndEmail(TestData.accountSettingsFormTestData());
+    }
+
+    @And("I change the phone number")
+    public void changePhoneNumber() {
+        accountSettingsPage.changePhoneNumber(TestData.accountSettingsFormTestData().get("phone"));
+    }
+
+    @And("I click on save modifications button")
+    public void clickOnSaveModificationsButton() {
+        accountSettingsPage.clickOnSaveModificationsButton();
+    }
+
+    @Then("I should see the phone number saved")
+    public void verifyPhoneNumberIsPresent() {
+        accountSettingsPage.verifyPhoneNumberIsPresent(TestData.accountSettingsFormTestData().get("phone"));
+    }
+
+    @And("I change the actual password with a new password")
+    public void changeActualPasswordWithNewPassword() {
+        accountSettingsPage.changeActualPasswordWithNewPassword(TestData.accountSettingsFormTestData());
+    }
+
+    @Then("I should change successfully the new password")
+    public void verifyNewPasswordChanged() {
+        accountSettingsPage.verifyNewPasswordChanged();
     }
 
     // Sports Bet Ticket
