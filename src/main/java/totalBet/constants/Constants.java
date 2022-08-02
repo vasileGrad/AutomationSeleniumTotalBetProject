@@ -1,0 +1,16 @@
+package totalBet.constants;
+
+public class Constants {
+
+    public final static int SHORT_WAIT = 2000;
+    public final static int LONG_WAIT = 5000;
+    public final static int HUGE_WAIT = 10000;
+
+    public final static int SHORT_SLEEP = 200;
+    public final static int LONG_SLEEP = 500;
+    public final static int HUGE_SLEEP = 1000;
+    public final static String SUCCESS = "succes";
+    public final static String VALUE = "value";
+
+    public final static String BET_FORMAT_VALUE = "#.##";
+}

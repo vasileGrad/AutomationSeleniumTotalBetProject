@@ -1,3 +1,4 @@
+@login
 Feature: Login Form
 
   @ignore
@@ -9,10 +10,10 @@ Feature: Login Form
   Scenario Outline: As a user I want to login with invalid email and password
     Given I click on login menu
     When I fill invalid email as <email> and valid password as <password>
-    Then I should receive an error message
+    Then I should receive a login error message
 
-  Examples:
-    | email                  | password |
-    | wrong.email1@gmail.com | Text1234 |
-    | wrong.email2@gmail.com | Text1234 |
-    | wrong.email3@gmail.com | Text1234 |
+    Examples:
+      | email                  | password |
+      | wrong.email1@gmail.com | Text1234 |
+      | wrong.email2@gmail.com | Text1234 |
+      | wrong.email3@gmail.com | Text1234 |

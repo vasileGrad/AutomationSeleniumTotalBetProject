@@ -1,3 +1,4 @@
+@registration
 Feature: Registration Form
 
   Scenario: As a user I want to register
@@ -8,4 +9,4 @@ Feature: Registration Form
   Scenario: As a user I want to register with a registered user credentials
     Given I click on registration menu
     When I fill in registration form details
-    Then I receive an error message
+    Then I receive a registration error message
