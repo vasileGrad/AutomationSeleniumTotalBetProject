@@ -22,7 +22,7 @@ public class FileDataReader {
 
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
-                String[] eventFields = currentLine.split(";");
+                String[] eventFields = currentLine.split(Constants.SEMICOLON);
 
                 int code = Integer.parseInt(eventFields[0].trim());
                 String name = eventFields[1].trim();

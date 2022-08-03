@@ -43,7 +43,7 @@ Feature: Verify tickets
     And I wait for the pop-up to appear
     Then I should see the details of the ticket correctly
 
-  @verifyTicket
+  @VerifyTicket
   Scenario: As a registered user I want to verify a sports bet ticket max win value
     Given I am an authenticated user
     When I click on home menu

@@ -105,7 +105,7 @@ public class SportsBetPage {
     }
 
     public void shouldSeeNumberOfSportsBetInRightList(HashMap<String, String> data) {
-        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(data.get("numberEvents")));
+        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(data.get(Constants.NUMBER_EVENTS)));
     }
 
     public void shouldDeleteAllSportsBet() {
@@ -118,11 +118,11 @@ public class SportsBetPage {
     }
 
     public void shouldNotSeeTheSportsBetInTheRightList() {
-        assertTrue("The sports bet list is present", ticketBody.getAttribute(Constants.CLASS).contains("empty-ticket"));
+        assertTrue("The sports bet list is present", ticketBody.getAttribute(Constants.CLASS).contains(Constants.EMPTY_TICKET));
     }
 
     public void shouldSeeNumberOfSportsBetInRightListBeCorrect(HashMap<String, String> data) {
-        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(String.valueOf(Integer.parseInt(data.get("numberEvents")) - 1)));
+        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(String.valueOf(Integer.parseInt(data.get(Constants.NUMBER_EVENTS)) - 1)));
     }
 
     public void successfullyPlacedAndSavedSportsBetTicket() throws InterruptedException {
@@ -140,7 +140,7 @@ public class SportsBetPage {
         String betSumTicketValue = actionsHelper.extractFirstWordFromString(betSumTicketDataContent.getText());
         assertTrue("Bet sum value is not correct", actionsHelper.equals(betInputValue, betSumTicketValue));
 
-        assertTrue("Combinations number is not correct", combinationsTicketDataContent.getText().equals("0"));
+        assertTrue("Combinations number is not correct", combinationsTicketDataContent.getText().equals(String.valueOf(0)));
 
         double stakeTicketValue = calculateStakeTicket(betInputValue, TestData.sportsBetTicketTestData());
         assertTrue("Stake ticket value is not correct", String.valueOf(stakeTicketValue).equals(stakeTicketDataContent.getText()));
@@ -166,7 +166,7 @@ public class SportsBetPage {
     }
 
     public double calculateStakeTicket(String betInputValue, HashMap<String, String> data) {
-        double ticketTax = Double.parseDouble(betInputValue) * Double.parseDouble(data.get("ticketTax"));
+        double ticketTax = Double.parseDouble(betInputValue) * Double.parseDouble(data.get(Constants.TICKET_TAX));
         return Double.parseDouble(betInputValue) - ticketTax;
     }
 }

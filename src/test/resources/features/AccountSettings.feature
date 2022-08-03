@@ -6,20 +6,20 @@ Feature: Account settings
     And I click on submit button
     Then I should see my profile page
 
-  @accountSettings
+  @AccountSettings
   Scenario: As a registered user I want to see my account settings page
     Given I am an authenticated user
     When I click on account settings link
     Then I should see the account settings page
 
-  @accountSettings
+  @AccountSettings
   Scenario: As a registered user I want to verify my profile details on my account settings page
     Given I am an authenticated user
     When I click on account settings link
     Then I should see the account settings page
     And I should have the same name and email
 
-  @accountSettings
+  @AccountSettings
   Scenario: As a registered user I want to change the phone number with a valid number on my account settings page
     Given I am an authenticated user
     When I click on account settings link
@@ -27,7 +27,7 @@ Feature: Account settings
     And I click on save modifications button
     Then I should see the phone number saved
 
-  @ignore
+  @Ignore
   Scenario: As a registered user I want to change the actual password with a new password my account settings page
     Given I am an authenticated user
     When I click on account settings link

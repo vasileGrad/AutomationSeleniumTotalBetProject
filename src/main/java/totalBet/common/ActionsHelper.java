@@ -31,11 +31,11 @@ public class ActionsHelper {
     }
 
     public String extractFirstWordFromString(String string) {
-        return Arrays.stream(string.split(" ")).findFirst().map(Object::toString).get();
+        return Arrays.stream(string.split(Constants.SPACE)).findFirst().map(Object::toString).get();
     }
 
     public String extractWordFromString(String string, int index) {
-        String[] words = string.split(" ");
+        String[] words = string.split(Constants.SPACE);
         return words[index];
     }
 }
