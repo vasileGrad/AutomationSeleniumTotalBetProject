@@ -1,4 +1,4 @@
-@login
+@Login
 Feature: Login Form
 
   Scenario: As a user I want to login with valid email and password

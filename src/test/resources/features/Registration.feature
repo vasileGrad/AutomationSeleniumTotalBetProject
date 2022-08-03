@@ -1,4 +1,4 @@
-@registration
+@Registration
 Feature: Registration Form
 
   Scenario: As a user I want to register
