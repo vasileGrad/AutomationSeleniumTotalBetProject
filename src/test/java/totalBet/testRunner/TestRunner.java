@@ -4,14 +4,25 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
+// PlaceTicket Runner
 /*@RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/totalBet/Ticket.feature",
+        features = "src/test/resources/totalBet/PlaceTicket.feature",
         glue = "totalBet/stepDefinitions",
-        tags = "@ticket"
+        tags = "@placeTicket"
 )
 public class TestRunner {
 }*/
+
+// VerifyTicket Runner
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        features = "src/test/resources/totalBet/VerifyTicket.feature",
+        glue = "totalBet/stepDefinitions",
+        tags = "@verifyTicket"
+)
+public class TestRunner {
+}
 
 // Login Runner
 /*@RunWith(Cucumber.class)
@@ -34,11 +45,11 @@ public class TestRunner {
 }*/
 
 // AccountSettings Runner
-@RunWith(Cucumber.class)
+/*@RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/totalBet/AccountSettings.feature",
         glue = "totalBet/stepDefinitions",
         tags = "@accountSettings"
 )
 public class TestRunner {
-}
+}*/

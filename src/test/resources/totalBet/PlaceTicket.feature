@@ -1,4 +1,4 @@
-@ticket
+@placeTicket
 Feature: Place tickets
 
   Background: Login user

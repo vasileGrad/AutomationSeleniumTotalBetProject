@@ -22,6 +22,6 @@ public class Constants {
     public final static String PARIU_CASTIGATOR = "Pariu câstigător";
     public final static String PARIU_NECASTIGATOR = "Pariu pierdut";
 
-    public final static String BILET_CASTIGATOR = "Bilet câstigător";
-    public final static String BILET_NECASTIGATOR = "Bilet NEcâstigător";
+    public final static String BILET_CASTIGATOR = "Bilet câștigător";
+    public final static String BILET_NECASTIGATOR = "Bilet necâștigător";
 }
