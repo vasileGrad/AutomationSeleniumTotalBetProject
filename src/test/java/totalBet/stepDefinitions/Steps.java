@@ -49,34 +49,34 @@ public class Steps {
     }
 
     // Registration Steps   - Start
-    @Given("^I click on registration link$")
+    @Given("I click on registration link")
     public void clickOnRegistrationLink() {
         registrationPage.clickOnRegistrationLink();
     }
 
-    @When("^I fill in registration form details$")
+    @When("I fill in registration form details")
     public void fillInRegistrationForm() {
         registrationPage.fillInRegistrationForm(TestData.registrationFormTestData());
     }
 
-    @Then("^I have successfully completed the registration$")
+    @Then("I have successfully completed the registration")
     public void successfullyCompletedRegistration() throws InterruptedException {
         registrationPage.successfullyCompletedRegistration(TestData.registrationFormTestData());
     }
 
-    @Then("^I receive a registration error message$")
+    @Then("I receive a registration error message")
     public void receivingRegistrationErrorMessage() {
         registrationPage.receivingRegistrationErrorMessage();
     }
 
 
     // Login Steps   - Start
-    @Given("^I click on login link$")
+    @Given("I click on login link")
     public void clickOnLoginLink() {
         loginPage.clickOnLoginLink();
     }
 
-    @When("^I fill in valid login email and password$")
+    @When("I fill in valid login email and password")
     public void fillInValidLoginCredentials() {
         loginPage.fillInValidLoginCredentials(TestData.loginFormTestData());
     }
@@ -91,17 +91,17 @@ public class Steps {
         loginPage.fillInEmailAndPassword(email, wrongPassword);
     }
 
-    @And("^I click on submit button$")
+    @And("I click on submit button")
     public void clickOnSubmitButton() {
         loginPage.clickOnSubmitButton();
     }
 
-    @Then("^I should see my profile page$")
+    @Then("I should see my profile page")
     public void successfullyLoggedIn() throws InterruptedException {
         loginPage.successfullyLoggedIn();
     }
 
-    @Given("^I am an authenticated user$")
+    @Given("I am an authenticated user")
     public void verifyAuthenticatedUser() {
         loginPage.verifyAuthenticatedUser();
     }
@@ -121,7 +121,7 @@ public class Steps {
         loginPage.verifyLoginLink();
     }
 
-    @Then("^I should receive a login error message$")
+    @Then("I should receive a login error message")
     public void receivingLoginErrorMessage() {
         loginPage.receivingLoginErrorMessage();
     }
@@ -174,62 +174,62 @@ public class Steps {
 
     // Sports Bet Ticket
     // Place Ticket
-    @When("^I click on sports bet menu$")
+    @When("I click on sports bet menu")
     public void clickOnSportsBetMenu() {
         sportsBetPage.clickOnSportsBetMenu();
     }
 
-    @And("^I click on the current date$")
+    @And("I click on the current date")
     public void clickOnCurrentDate() {
         sportsBetPage.clickOnCurrentDate();
     }
 
-    @And("^I choose Football sport$")
+    @And("I choose Football sport")
     public void chooseFootballSport() {
         sportsBetPage.chooseFootballSport();
     }
 
-    @And("^I click on the first ticket number$")
+    @And("I click on the first ticket number")
     public void chooseFirstTicketNumber() {
         sportsBetPage.chooseFirstTicketNumber();
     }
 
-    @And("^I place the sports bet ticket$")
+    @And("I place the sports bet ticket")
     public void placeSportsBetTicket() throws InterruptedException {
         sportsBetPage.placeSportsBetTicket(TestData.sportsBetTicketTestData());
     }
 
-    @Then("^I should see the number of sports bet in the right list$")
+    @Then("I should see the number of sports bet in the right list")
     public void shouldSeeNumberOfSportsBetInRightList() {
         sportsBetPage.shouldSeeNumberOfSportsBetInRightList(TestData.sportsBetTicketTestData());
     }
 
-    @And("^I delete all the sports bet$")
+    @And("I delete all the sports bet")
     public void shouldDeleteAllSportsBet() {
         sportsBetPage.shouldDeleteAllSportsBet();
     }
 
-    @And("^I remove the first ticket from the right list$")
+    @And("I remove the first ticket from the right list")
     public void deleteTicketFromRightList() {
         sportsBetPage.deleteTicketFromRightList();
     }
 
-    @And("^I should not see the sports bet in the right list$")
+    @And("I should not see the sports bet in the right list")
     public void shouldNotSeeTheSportsBetInTheRightList() {
         sportsBetPage.shouldNotSeeTheSportsBetInTheRightList();
     }
 
-    @Then("^I should see the number of sports bet in the right list to be correct$")
+    @Then("I should see the number of sports bet in the right list to be correct")
     public void shouldSeeNumberOfSportsBetInRightListBeCorrect() {
         sportsBetPage.shouldSeeNumberOfSportsBetInRightListBeCorrect(TestData.sportsBetTicketTestData());
     }
 
-    @And("^I successfully placed and saved the sports bet ticket$")
+    @And("I successfully placed and saved the sports bet ticket")
     public void successfullyPlacedAndSavedSportsBetTicket() throws InterruptedException {
         sportsBetPage.successfullyPlacedAndSavedSportsBetTicket();
     }
 
-    @Then("^I verify the sports bet ticket data value is calculated correctly$")
+    @Then("I verify the sports bet ticket data value is calculated correctly")
     public void verifySportsBetTicketDataValueIsCalculatedCorrectly() {
         sportsBetPage.verifySportsBetTicketDataValueIsCalculatedCorrectly();
     }
