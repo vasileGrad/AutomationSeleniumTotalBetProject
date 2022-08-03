@@ -14,6 +14,8 @@ public class Constants {
 
     public final static String SUCCESS = "succes";
     public final static String VALUE = "value";
+    public final static String TITLE = "title";
+    public final static String CLASS = "class";
 
     public final static String BET_FORMAT_VALUE = "#.##";
 
@@ -24,4 +26,8 @@ public class Constants {
 
     public final static String BILET_CASTIGATOR = "Bilet câștigător";
     public final static String BILET_NECASTIGATOR = "Bilet necâștigător";
+
+    public final static String PERCENTAGE = "%";
+    public final static String SPACE = " ";
+    public final static String EMPTY_SPACE = "";
 }

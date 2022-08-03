@@ -9,8 +9,6 @@ import totalBet.common.ActionsHelper;
 import totalBet.constants.Constants;
 import totalBet.data.TestData;
 
-import java.text.DecimalFormat;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -120,7 +118,7 @@ public class SportsBetPage {
     }
 
     public void shouldNotSeeTheSportsBetInTheRightList() {
-        assertTrue("The sports bet list is present", ticketBody.getAttribute("class").contains("empty-ticket"));
+        assertTrue("The sports bet list is present", ticketBody.getAttribute(Constants.CLASS).contains("empty-ticket"));
     }
 
     public void shouldSeeNumberOfSportsBetInRightListBeCorrect(HashMap<String, String> data) {
@@ -135,11 +133,11 @@ public class SportsBetPage {
     }
 
     public void verifySportsBetTicketDataValueIsCalculatedCorrectly() {
-        double totalBetTicketValue = formatDoubleResult(getTotalBetTicket(betOddValueList));
+        double totalBetTicketValue = actionsHelper.formatDoubleResult(getTotalBetTicket(betOddValueList));
         assertTrue("Total bet is not correct", actionsHelper.equals(totalBetValueTicketDataContent.getText(), String.valueOf(totalBetTicketValue)));
 
         String betInputValue = betInputTicket.getAttribute(Constants.VALUE);
-        String betSumTicketValue = extractFirstWordFromString(betSumTicketDataContent.getText());
+        String betSumTicketValue = actionsHelper.extractFirstWordFromString(betSumTicketDataContent.getText());
         assertTrue("Bet sum value is not correct", actionsHelper.equals(betInputValue, betSumTicketValue));
 
         assertTrue("Combinations number is not correct", combinationsTicketDataContent.getText().equals("0"));
@@ -148,8 +146,8 @@ public class SportsBetPage {
         assertTrue("Stake ticket value is not correct", String.valueOf(stakeTicketValue).equals(stakeTicketDataContent.getText()));
 
         double maxWinBetTicket = stakeTicketValue * totalBetTicketValue;
-        String expectedMaxWinBetTicket = String.valueOf(formatDoubleResult(maxWinBetTicket));
-        String actualMaxWinBetTicket = extractFirstWordFromString(maxWinValueTicket.getText());
+        String expectedMaxWinBetTicket = String.valueOf(actionsHelper.formatDoubleResult(maxWinBetTicket));
+        String actualMaxWinBetTicket = actionsHelper.extractFirstWordFromString(maxWinValueTicket.getText());
         assertEquals("Total bet ticket value is not correct", expectedMaxWinBetTicket, actualMaxWinBetTicket);
     }
 
@@ -165,15 +163,6 @@ public class SportsBetPage {
         }
 
         return totalBetValue;
-    }
-
-    public double formatDoubleResult(double value) {
-        DecimalFormat formatResult = new DecimalFormat(Constants.BET_FORMAT_VALUE);
-        return Double.valueOf(formatResult.format(value));
-    }
-
-    public String extractFirstWordFromString(String string) {
-        return Arrays.stream(string.split(" ")).findFirst().map(Object::toString).get();
     }
 
     public double calculateStakeTicket(String betInputValue, HashMap<String, String> data) {

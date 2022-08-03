@@ -8,13 +8,13 @@ public class Ticket {
     private double maxWin;
     private int combinations;
     private double betSum;
-    private double betTaxValue;
+    private int betTaxValue;
     private double betTaxSum;
     private double totalBetValue;
     private String status;
     private List<Event> events;
 
-    public Ticket(String code, String date, double maxWin, int combinations, double betSum, double betTaxValue, double betTaxSum, double totalBetValue, String status, List<Event> events) {
+    public Ticket(String code, String date, double maxWin, int combinations, double betSum, int betTaxValue, double betTaxSum, double totalBetValue, String status, List<Event> events) {
         this.code = code;
         this.date = date;
         this.maxWin = maxWin;
@@ -67,11 +67,11 @@ public class Ticket {
         this.betSum = betSum;
     }
 
-    public double getBetTaxValue() {
+    public int getBetTaxValue() {
         return betTaxValue;
     }
 
-    public void setBetTaxValue(double betTaxValue) {
+    public void setBetTaxValue(int betTaxValue) {
         this.betTaxValue = betTaxValue;
     }
 

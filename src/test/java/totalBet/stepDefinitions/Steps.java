@@ -269,4 +269,19 @@ public class Steps {
     public void verifyPopUpTicketStatusIsDisplayedCorrectly() {
         verifyTicketPage.verifyPopUpTicketStatusIsDisplayedCorrectly(TestData.ticketTestData().getStatus());
     }
+
+    @Then("I should see the ticket max win value is displayed")
+    public void verifyPopUpTicketContainsMaxWinValue() {
+        verifyTicketPage.verifyPopUpTicketContainsMaxWinValue(TestData.ticketTestData().getMaxWin());
+    }
+
+    @Then("I should see the details of the ticket correctly")
+    public void verifyTicketDetailsAreCorrectlyDisplayed() {
+        verifyTicketPage.verifyTicketDetailsAreCorrectlyDisplayed(TestData.ticketTestData());
+    }
+
+    @Then("I should see the max win of the ticket correctly")
+    public void verifyMaxWinTicketIsCorrectlyDisplayed() {
+        verifyTicketPage.verifyMaxWinTicketIsCorrectlyDisplayed(TestData.ticketTestData().getMaxWin());
+    }
 }
