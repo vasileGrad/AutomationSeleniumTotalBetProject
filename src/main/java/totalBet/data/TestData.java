@@ -1,6 +1,12 @@
 package totalBet.data;
 
+import totalBet.classes.Event;
+import totalBet.classes.Ticket;
+import totalBet.constants.Constants;
+import totalBet.readers.FileDataReader;
+
 import java.util.HashMap;
+import java.util.List;
 
 public class TestData {
 
@@ -34,5 +40,11 @@ public class TestData {
         sportsBetTicketData.put("numberEvents", "3");
         sportsBetTicketData.put("ticketTax", "0.05");
         return sportsBetTicketData;
+    }
+
+    public static Ticket ticketTestData() {
+        List<Event> events = FileDataReader.extractEvents("src/main/java/TicketEvents.txt");
+        Ticket ticket = new Ticket("SB221663IB7", "15.06 15:21", 601.32, 1, 4.76, 5, 0.24, 102.64, Constants.BILET_NECASTIGATOR, events);
+        return ticket;
     }
 }

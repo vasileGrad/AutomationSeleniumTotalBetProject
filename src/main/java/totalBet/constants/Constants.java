@@ -18,4 +18,10 @@ public class Constants {
     public final static String BET_FORMAT_VALUE = "#.##";
 
     public final static String DATE_CONT = "Date cont";
+
+    public final static String PARIU_CASTIGATOR = "Pariu câstigător";
+    public final static String PARIU_NECASTIGATOR = "Pariu pierdut";
+
+    public final static String BILET_CASTIGATOR = "Bilet câstigător";
+    public final static String BILET_NECASTIGATOR = "Bilet NEcâstigător";
 }

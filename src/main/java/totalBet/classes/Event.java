@@ -1,30 +1,22 @@
 package totalBet.classes;
 
 public class Event {
-    private String name;
     private int code;
+    private String name;
     private String date;
     private String details;
     private String oddLabel;
     private double oddValue;
     private String status;
 
-    public Event(String name, int code, String date, String details, String oddLabel, double oddValue, String status) {
-        this.name = name;
+    public Event(int code, String name, String date, String details, String oddLabel, double oddValue, String status) {
         this.code = code;
+        this.name = name;
         this.date = date;
         this.details = details;
         this.oddLabel = oddLabel;
         this.oddValue = oddValue;
         this.status = status;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getCode() {
@@ -33,6 +25,14 @@ public class Event {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDate() {
