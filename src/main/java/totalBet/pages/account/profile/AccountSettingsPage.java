@@ -53,12 +53,12 @@ public class AccountSettingsPage {
     }
 
     public void verifyAccountSettingsPage() {
-        assertTrue("The account settings page is not shown", accountTitle.getText().equals(Constants.DATE_CONT));
+        assertTrue("The account settings page is not shown", accountTitle.getText().equals("Date cont"));
     }
 
     public void verifyAccountSettingsNameAndEmail(HashMap<String, String> data) {
-        assertEquals("The user name doesn't match", data.get(Constants.FULL_NAME), name.getAttribute(Constants.VALUE));
-        assertEquals("The email doesn't match", data.get(Constants.EMAIL), email.getAttribute(Constants.VALUE));
+        assertEquals("The user name doesn't match", data.get("fullName"), name.getAttribute(Constants.VALUE));
+        assertEquals("The email doesn't match", data.get("email"), email.getAttribute(Constants.VALUE));
     }
 
     public void changePhoneNumber(String phoneNumber) {
@@ -74,9 +74,9 @@ public class AccountSettingsPage {
     }
 
     public void changeActualPasswordWithNewPassword(HashMap<String, String> data) {
-        actionsHelper.fillInText(actualPassword, data.get(Constants.ACTUAL_PASSWORD));
-        actionsHelper.fillInText(newPassword, data.get(Constants.NEW_PASSWORD));
-        actionsHelper.fillInText(confirmNewPassword, data.get(Constants.NEW_PASSWORD));
+        actionsHelper.fillInText(actualPassword, data.get("actualPassword"));
+        actionsHelper.fillInText(newPassword, data.get("newPassword"));
+        actionsHelper.fillInText(confirmNewPassword, data.get("newPassword"));
 
         assertEquals("The new password is not equal with confirmation password", newPassword.getText(), confirmNewPassword.getText());
     }

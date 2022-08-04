@@ -51,10 +51,10 @@ public class RegistrationPage {
     }
 
     public void fillInRegistrationForm(HashMap<String, String> data) {
-        actionsHelper.fillInText(fullNameTextbox, data.get(Constants.FULL_NAME));
-        actionsHelper.fillInText(emailTextbox, data.get(Constants.EMAIL));
-        actionsHelper.fillInText(passwordTextbox, data.get(Constants.PASSWORD));
-        actionsHelper.fillInText(confirmPasswordTextbox, data.get(Constants.PASSWORD));
+        actionsHelper.fillInText(fullNameTextbox, data.get("fullName"));
+        actionsHelper.fillInText(emailTextbox, data.get("email"));
+        actionsHelper.fillInText(passwordTextbox, data.get("password"));
+        actionsHelper.fillInText(confirmPasswordTextbox, data.get("password"));
         actionsHelper.submitButton(submitButton);
     }
 
@@ -62,7 +62,7 @@ public class RegistrationPage {
         accountTitle.isDisplayed();
         actionsHelper.clickOnElement(myAccount);
         Thread.sleep(Constants.SHORT_SLEEP);
-        assertTrue("The profile name is different", profileNameRegistered.getText().equals(data.get(Constants.FULL_NAME)));
+        assertTrue("The profile name is different", profileNameRegistered.getText().equals(data.get("fullName")));
     }
 
     public void receivingRegistrationErrorMessage() {

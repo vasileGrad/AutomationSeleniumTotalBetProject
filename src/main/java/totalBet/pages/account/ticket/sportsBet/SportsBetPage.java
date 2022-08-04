@@ -105,7 +105,7 @@ public class SportsBetPage {
     }
 
     public void shouldSeeNumberOfSportsBetInRightList(HashMap<String, String> data) {
-        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(data.get(Constants.NUMBER_EVENTS)));
+        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(data.get("numberEvents")));
     }
 
     public void shouldDeleteAllSportsBet() {
@@ -118,11 +118,11 @@ public class SportsBetPage {
     }
 
     public void shouldNotSeeTheSportsBetInTheRightList() {
-        assertTrue("The sports bet list is present", ticketBody.getAttribute(Constants.CLASS).contains(Constants.EMPTY_TICKET));
+        assertTrue("The sports bet list is present", ticketBody.getAttribute(Constants.CLASS).contains("empty-ticket"));
     }
 
     public void shouldSeeNumberOfSportsBetInRightListBeCorrect(HashMap<String, String> data) {
-        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(String.valueOf(Integer.parseInt(data.get(Constants.NUMBER_EVENTS)) - 1)));
+        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(String.valueOf(Integer.parseInt(data.get("numberEvents")) - 1)));
     }
 
     public void successfullyPlacedAndSavedSportsBetTicket() throws InterruptedException {
@@ -166,7 +166,7 @@ public class SportsBetPage {
     }
 
     public double calculateStakeTicket(String betInputValue, HashMap<String, String> data) {
-        double ticketTax = Double.parseDouble(betInputValue) * Double.parseDouble(data.get(Constants.TICKET_TAX));
+        double ticketTax = Double.parseDouble(betInputValue) * Double.parseDouble(data.get("ticketTax"));
         return Double.parseDouble(betInputValue) - ticketTax;
     }
 }

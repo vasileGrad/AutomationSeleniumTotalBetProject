@@ -48,8 +48,8 @@ public class LoginPage {
     }
 
     public void fillInValidLoginCredentials(HashMap<String, String> data) {
-        actionsHelper.fillInText(emailTextbox, data.get(Constants.EMAIL));
-        actionsHelper.fillInText(passwordTextbox, data.get(Constants.PASSWORD));
+        actionsHelper.fillInText(emailTextbox, data.get("email"));
+        actionsHelper.fillInText(passwordTextbox, data.get("password"));
     }
 
     public void fillInEmailAndPassword(String email, String password) {
