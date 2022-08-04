@@ -1,4 +1,4 @@
-@PlaceTicket
+@SportsBetTicket
 Feature: Place tickets
 
   Background: Login user

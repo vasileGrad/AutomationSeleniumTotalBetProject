@@ -1,4 +1,4 @@
-package totalBet.pages.account.authentication;
+package totalBet.pages.authentication;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,29 +6,25 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import totalBet.common.ActionsHelper;
 import totalBet.constants.Constants;
+import totalBet.pages.common.HeaderPage;
 
 import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class LoginPage {
+public class LoginPage extends HeaderPage {
 
     WebDriver driver;
 
     public LoginPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     private ActionsHelper actionsHelper = new ActionsHelper();
 
-    @FindBy(xpath = "//*[.='Contul meu']")
-    private WebElement myAccount;
-    @FindBy(xpath = "//*[.='Autentificare']")
-    private WebElement loginLink;
-    @FindBy(xpath = "//*[@class='logout-button']")
-    private WebElement logoutButton;
     @FindBy(id = "email")
     private WebElement emailTextbox;
     @FindBy(id = "password")
@@ -43,13 +39,13 @@ public class LoginPage {
     private List<WebElement> errorMessages;
 
     public void clickOnLoginLink() {
-        actionsHelper.clickOnElement(myAccount);
-        actionsHelper.clickOnElement(loginLink);
+        actionsHelper.clickOnElement(getMyAccount());
+        actionsHelper.clickOnElement(getLoginLink());
     }
 
     public void fillInValidLoginCredentials(HashMap<String, String> data) {
-        actionsHelper.fillInText(emailTextbox, data.get(Constants.EMAIL));
-        actionsHelper.fillInText(passwordTextbox, data.get(Constants.PASSWORD));
+        actionsHelper.fillInText(emailTextbox, data.get("email"));
+        actionsHelper.fillInText(passwordTextbox, data.get("password"));
     }
 
     public void fillInEmailAndPassword(String email, String password) {
@@ -58,7 +54,7 @@ public class LoginPage {
     }
 
     public void successfullyLoggedIn() throws InterruptedException {
-        actionsHelper.clickOnElement(myAccount);
+        actionsHelper.clickOnElement(getMyAccount());
         Thread.sleep(Constants.SHORT_SLEEP);
         assertTrue("The profile name is different", profileNameRegistered.isDisplayed());
     }
@@ -68,22 +64,22 @@ public class LoginPage {
     }
 
     public void clickOnLogoutButton() {
-        actionsHelper.clickOnElement(logoutButton);
+        actionsHelper.clickOnElement(getLogoutButton());
     }
 
     public void verifyAuthenticatedUser() {
-        actionsHelper.clickOnElement(myAccount);
+        actionsHelper.clickOnElement(getMyAccount());
         assertTrue("The profile name is different", profileNameRegistered.isDisplayed());
     }
 
     public void verifyLogoutButton() {
-        assertTrue("Logout button is no visible", logoutButton.isDisplayed());
+        assertTrue("Logout button is no visible", getLogoutButton().isDisplayed());
     }
 
     public void verifyLoginLink() throws InterruptedException {
-        actionsHelper.clickOnElement(myAccount);
+        actionsHelper.clickOnElement(getMyAccount());
         Thread.sleep(Constants.SHORT_SLEEP);
-        assertTrue("Login link is not visible", loginLink.isDisplayed());
+        assertTrue("Login link is not visible", getLoginLink().isDisplayed());
     }
 
     public void receivingLoginErrorMessage() {

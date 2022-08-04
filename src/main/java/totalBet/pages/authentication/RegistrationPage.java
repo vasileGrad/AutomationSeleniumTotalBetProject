@@ -1,4 +1,4 @@
-package totalBet.pages.account.authentication;
+package totalBet.pages.authentication;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,26 +6,24 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import totalBet.common.ActionsHelper;
 import totalBet.constants.Constants;
+import totalBet.pages.common.HeaderPage;
 
 import java.util.HashMap;
 
 import static org.junit.Assert.assertTrue;
 
-public class RegistrationPage {
+public class RegistrationPage extends HeaderPage {
 
     private WebDriver driver;
 
     public RegistrationPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     private ActionsHelper actionsHelper = new ActionsHelper();
 
-    @FindBy(xpath = "//*[.='Contul meu']")
-    private WebElement myAccount;
-    @FindBy(xpath = "//*[.='Înregistrare']")
-    private WebElement registerLink;
     @FindBy(id = "name")
     private WebElement fullNameTextbox;
     @FindBy(id = "email")
@@ -38,31 +36,29 @@ public class RegistrationPage {
     private WebElement submitButton;
     @FindBy(xpath = "//*[.='Date cont']")
     private WebElement accountTitle;
-    @FindBy(xpath = "//a[.='Acasă']")
-    private WebElement homeMenu;
     @FindBy(xpath = "//*[@class='auth-user']")
     private WebElement profileNameRegistered;
     @FindBy(xpath = "//*[@role='alert']")
     private WebElement emailTakenAlert;
 
     public void clickOnRegistrationLink() {
-        actionsHelper.clickOnElement(myAccount);
-        actionsHelper.clickOnElement(registerLink);
+        actionsHelper.clickOnElement(getMyAccount());
+        actionsHelper.clickOnElement(getRegisterLink());
     }
 
     public void fillInRegistrationForm(HashMap<String, String> data) {
-        actionsHelper.fillInText(fullNameTextbox, data.get(Constants.FULL_NAME));
-        actionsHelper.fillInText(emailTextbox, data.get(Constants.EMAIL));
-        actionsHelper.fillInText(passwordTextbox, data.get(Constants.PASSWORD));
-        actionsHelper.fillInText(confirmPasswordTextbox, data.get(Constants.PASSWORD));
+        actionsHelper.fillInText(fullNameTextbox, data.get("fullName"));
+        actionsHelper.fillInText(emailTextbox, data.get("email"));
+        actionsHelper.fillInText(passwordTextbox, data.get("password"));
+        actionsHelper.fillInText(confirmPasswordTextbox, data.get("password"));
         actionsHelper.submitButton(submitButton);
     }
 
     public void successfullyCompletedRegistration(HashMap<String, String> data) throws InterruptedException {
         accountTitle.isDisplayed();
-        actionsHelper.clickOnElement(myAccount);
+        actionsHelper.clickOnElement(getMyAccount());
         Thread.sleep(Constants.SHORT_SLEEP);
-        assertTrue("The profile name is different", profileNameRegistered.getText().equals(data.get(Constants.FULL_NAME)));
+        assertTrue("The profile name is different", profileNameRegistered.getText().equals(data.get("fullName")));
     }
 
     public void receivingRegistrationErrorMessage() {

@@ -1,4 +1,4 @@
-package totalBet.pages.account.ticket.sportsBet;
+package totalBet.pages.ticket.sportsBet;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import totalBet.common.ActionsHelper;
 import totalBet.constants.Constants;
 import totalBet.data.TestData;
+import totalBet.pages.common.HeaderPage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,19 +17,18 @@ import java.util.Random;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class SportsBetPage {
+public class SportsBetPage extends HeaderPage {
 
     WebDriver driver;
 
     public SportsBetPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     private ActionsHelper actionsHelper = new ActionsHelper();
 
-    @FindBy(xpath = "//*[.='Pariuri Sportive']")
-    private WebElement sportsBetLinkMenu;
     @FindBy(xpath = "//*[@class='quick-day active']")
     private WebElement currentQuickDateOption;
     @FindBy(xpath = "//*[@class='sport-menu-item']")
@@ -79,7 +79,7 @@ public class SportsBetPage {
     private List<WebElement> betOddValueList;
 
     public void clickOnSportsBetMenu() {
-        actionsHelper.clickOnElement(sportsBetLinkMenu);
+        actionsHelper.clickOnElement(getSportsBetLinkMenu());
     }
 
     public void clickOnCurrentDate() {
@@ -105,7 +105,7 @@ public class SportsBetPage {
     }
 
     public void shouldSeeNumberOfSportsBetInRightList(HashMap<String, String> data) {
-        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(data.get(Constants.NUMBER_EVENTS)));
+        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(data.get("numberEvents")));
     }
 
     public void shouldDeleteAllSportsBet() {
@@ -118,11 +118,11 @@ public class SportsBetPage {
     }
 
     public void shouldNotSeeTheSportsBetInTheRightList() {
-        assertTrue("The sports bet list is present", ticketBody.getAttribute(Constants.CLASS).contains(Constants.EMPTY_TICKET));
+        assertTrue("The sports bet list is present", ticketBody.getAttribute(Constants.CLASS).contains("empty-ticket"));
     }
 
     public void shouldSeeNumberOfSportsBetInRightListBeCorrect(HashMap<String, String> data) {
-        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(String.valueOf(Integer.parseInt(data.get(Constants.NUMBER_EVENTS)) - 1)));
+        assertTrue("The number of events is not correctly placed", eventsCount.getText().equals(String.valueOf(Integer.parseInt(data.get("numberEvents")) - 1)));
     }
 
     public void successfullyPlacedAndSavedSportsBetTicket() throws InterruptedException {
@@ -166,7 +166,7 @@ public class SportsBetPage {
     }
 
     public double calculateStakeTicket(String betInputValue, HashMap<String, String> data) {
-        double ticketTax = Double.parseDouble(betInputValue) * Double.parseDouble(data.get(Constants.TICKET_TAX));
+        double ticketTax = Double.parseDouble(betInputValue) * Double.parseDouble(data.get("ticketTax"));
         return Double.parseDouble(betInputValue) - ticketTax;
     }
 }

@@ -19,8 +19,6 @@ public class Constants {
 
     public final static String BET_FORMAT_VALUE = "#.##";
 
-    public final static String DATE_CONT = "Date cont";
-
     public final static String PARIU_CASTIGATOR = "Pariu câstigător";
     public final static String PARIU_NECASTIGATOR = "Pariu pierdut";
 
@@ -32,13 +30,4 @@ public class Constants {
     public final static String EMPTY_SPACE = "";
     public final static String SEMICOLON = ";";
 
-    public final static String FULL_NAME = "fullName";
-    public final static String EMAIL = "email";
-    public final static String PASSWORD = "password";
-    public final static String ACTUAL_PASSWORD = "actualPassword";
-    public final static String NEW_PASSWORD = "newPassword";
-    public final static String PHONE = "phone";
-    public final static String NUMBER_EVENTS = "numberEvents";
-    public final static String TICKET_TAX = "ticketTax";
-    public final static String EMPTY_TICKET = "empty-ticket";
 }
