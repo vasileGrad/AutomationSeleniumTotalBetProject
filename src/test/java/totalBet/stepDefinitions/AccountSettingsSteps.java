@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import totalBet.cucumber.TestContext;
 import totalBet.data.TestData;
-import totalBet.pages.account.profile.AccountSettingsPage;
+import totalBet.pages.profile.AccountSettingsPage;
 
 public class AccountSettingsSteps {
     AccountSettingsPage accountSettingsPage;

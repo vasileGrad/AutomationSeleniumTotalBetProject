@@ -6,7 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import totalBet.cucumber.TestContext;
 import totalBet.data.TestData;
-import totalBet.pages.account.authentication.LoginPage;
+import totalBet.pages.authentication.LoginPage;
 
 public class LoginSteps  {
     LoginPage loginPage;

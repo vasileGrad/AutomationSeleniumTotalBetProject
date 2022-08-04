@@ -1,11 +1,11 @@
 package totalBet.managers;
 
 import org.openqa.selenium.WebDriver;
-import totalBet.pages.account.authentication.LoginPage;
-import totalBet.pages.account.authentication.RegistrationPage;
-import totalBet.pages.account.profile.AccountSettingsPage;
-import totalBet.pages.account.ticket.results.VerifyTicketPage;
-import totalBet.pages.account.ticket.sportsBet.SportsBetPage;
+import totalBet.pages.authentication.LoginPage;
+import totalBet.pages.authentication.RegistrationPage;
+import totalBet.pages.profile.AccountSettingsPage;
+import totalBet.pages.ticket.results.VerifyTicketPage;
+import totalBet.pages.ticket.sportsBet.SportsBetPage;
 
 public class PageObjectManager {
     private WebDriver driver;

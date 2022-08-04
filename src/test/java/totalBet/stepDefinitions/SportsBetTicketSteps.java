@@ -3,14 +3,18 @@ package totalBet.stepDefinitions;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import totalBet.cucumber.TestContext;
 import totalBet.data.TestData;
-import totalBet.pages.account.ticket.sportsBet.SportsBetPage;
+import totalBet.pages.ticket.sportsBet.SportsBetPage;
 
-public class PlaceTicketSteps {
+public class SportsBetTicketSteps {
+    WebDriver driver;
+
     SportsBetPage sportsBetPage;
 
-    public PlaceTicketSteps(SportsBetPage sportsBetPage) {
-        this.sportsBetPage = sportsBetPage;
+    public SportsBetTicketSteps(TestContext testContext) {
+        this.sportsBetPage = testContext.getPageObjectManager().getSportsBetPage();
     }
 
     @When("I click on sports bet menu")

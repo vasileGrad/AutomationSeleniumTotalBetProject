@@ -1,4 +1,4 @@
-package totalBet.pages.account.profile;
+package totalBet.pages.profile;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,29 +6,25 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import totalBet.common.ActionsHelper;
 import totalBet.constants.Constants;
+import totalBet.pages.common.HeaderPage;
 
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class AccountSettingsPage {
+public class AccountSettingsPage extends HeaderPage {
 
     WebDriver driver;
 
     public AccountSettingsPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     private ActionsHelper actionsHelper = new ActionsHelper();
 
-    @FindBy(xpath = "//*[.='Contul meu']")
-    private WebElement myAccount;
-    @FindBy(xpath = "//*[@class='auth-user']")
-    private WebElement profileNameRegistered;
-    @FindBy(xpath = "//*[.='Setari cont']")
-    private WebElement accountSettingsLink;
     @FindBy(xpath = "//*[@class='account-title']")
     private WebElement accountTitle;
     @FindBy(xpath = "//input[@name='name']")
@@ -49,7 +45,7 @@ public class AccountSettingsPage {
     private WebElement accountSettingsMenuItem;
 
     public void clickOnAccountSettingsLink() {
-        actionsHelper.clickOnElement(accountSettingsLink);
+        actionsHelper.clickOnElement(getAccountSettingsLink());
     }
 
     public void verifyAccountSettingsPage() {

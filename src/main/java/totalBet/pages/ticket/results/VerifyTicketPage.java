@@ -1,4 +1,4 @@
-package totalBet.pages.account.ticket.results;
+package totalBet.pages.ticket.results;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +11,7 @@ import totalBet.classes.Event;
 import totalBet.classes.Ticket;
 import totalBet.common.ActionsHelper;
 import totalBet.constants.Constants;
+import totalBet.pages.common.HeaderPage;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -19,19 +20,18 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class VerifyTicketPage {
+public class VerifyTicketPage extends HeaderPage {
 
     WebDriver driver;
 
     public VerifyTicketPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     ActionsHelper actionsHelper = new ActionsHelper();
 
-    @FindBy(xpath = "//*[.='Acasă']")
-    private WebElement homeMenu;
     @FindBy(xpath = "//*[@class='search-input']")
     private WebElement searchInputTicket;
     @FindBy(xpath = "//*[@class='verify-ticket-button']")
@@ -72,7 +72,7 @@ public class VerifyTicketPage {
     private WebElement statusTicket;
 
     public void clickOnHomeMenu() {
-        actionsHelper.clickOnElement(homeMenu);
+        actionsHelper.clickOnElement(getHomeMenu());
     }
 
     public void clickOnSearchInputTicket() {
