@@ -19,15 +19,14 @@ import static org.junit.Assert.assertTrue;
 
 public class SportsBetPage extends HeaderPage {
 
-    WebDriver driver;
+    private WebDriver driver;
+    private ActionsHelper actionsHelper = new ActionsHelper();
 
     public SportsBetPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    private ActionsHelper actionsHelper = new ActionsHelper();
 
     @FindBy(xpath = "//*[@class='quick-day active']")
     private WebElement currentQuickDateOption;
@@ -98,9 +97,9 @@ public class SportsBetPage extends HeaderPage {
         int numberEvents = Integer.parseInt(data.get("numberEvents"));
         for (int i = 0; i < numberEvents; i++) {
             WebElement oddEvent = eventsOdd.get(i);
+            actionsHelper.waitForElementVisibility(oddEvent, driver);
             actionsHelper.clickOnElement(oddEvent);
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", oddEvent);
-            Thread.sleep(Constants.SHORT_SLEEP);
         }
     }
 
@@ -127,9 +126,8 @@ public class SportsBetPage extends HeaderPage {
 
     public void successfullyPlacedAndSavedSportsBetTicket() throws InterruptedException {
         actionsHelper.clickOnElement(placeAndSaveButton);
-        Thread.sleep(Constants.LONG_SLEEP);
-        boolean isTicketPlaced = popUpTitlePlaceTicket.getText().contains(Constants.SUCCESS);
-        assertTrue("The sports bet ticket was not placed successfully", isTicketPlaced);
+        actionsHelper.waitForElementVisibility(popUpTitlePlaceTicket, driver);
+        assertTrue("The sports bet ticket was not placed successfully", popUpTitlePlaceTicket.getText().contains(Constants.SUCCESS));
     }
 
     public void verifySportsBetTicketDataValueIsCalculatedCorrectly() {

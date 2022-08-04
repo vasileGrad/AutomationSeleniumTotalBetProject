@@ -1,9 +1,13 @@
 package totalBet.common;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import totalBet.constants.Constants;
 
 import java.text.DecimalFormat;
+import java.time.Duration;
 import java.util.Arrays;
 
 public class ActionsHelper {
@@ -37,5 +41,18 @@ public class ActionsHelper {
     public String extractWordFromString(String string, int index) {
         String[] words = string.split(Constants.SPACE);
         return words[index];
+    }
+
+    public void waitForElementVisibility(WebElement element, WebDriver driver) throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIME_SECONDS));
+        int i = 5;
+        while( i != 0) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(element));
+            } catch (Exception e) {
+                Thread.sleep(Constants.LONG_SLEEP);
+            }
+            i--;
+        }
     }
 }

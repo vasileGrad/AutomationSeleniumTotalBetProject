@@ -55,7 +55,7 @@ public class LoginPage extends HeaderPage {
 
     public void successfullyLoggedIn() throws InterruptedException {
         actionsHelper.clickOnElement(getMyAccount());
-        Thread.sleep(Constants.SHORT_SLEEP);
+        actionsHelper.waitForElementVisibility(profileNameRegistered, driver);
         assertTrue("The profile name is different", profileNameRegistered.isDisplayed());
     }
 
@@ -78,7 +78,7 @@ public class LoginPage extends HeaderPage {
 
     public void verifyLoginLink() throws InterruptedException {
         actionsHelper.clickOnElement(getMyAccount());
-        Thread.sleep(Constants.SHORT_SLEEP);
+        actionsHelper.waitForElementVisibility(getLoginLink(), driver);
         assertTrue("Login link is not visible", getLoginLink().isDisplayed());
     }
 
