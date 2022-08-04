@@ -10,7 +10,8 @@ public class Constants {
     public final static int LONG_SLEEP = 500;
     public final static int HUGE_SLEEP = 1000;
 
-    public final static int SHORT_TIME_SECONDS = 10;
+    public final static int SHORT_TIME_SECONDS = 5;
+    public final static int LONG_TIME_SECONDS = 10;
 
     public final static String SUCCESS = "succes";
     public final static String VALUE = "value";

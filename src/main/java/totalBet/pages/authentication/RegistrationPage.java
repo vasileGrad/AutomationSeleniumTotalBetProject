@@ -55,9 +55,10 @@ public class RegistrationPage extends HeaderPage {
     }
 
     public void successfullyCompletedRegistration(HashMap<String, String> data) throws InterruptedException {
-        accountTitle.isDisplayed();
+        actionsHelper.waitForElementVisibility(accountTitle, driver);
+        assertTrue("The title is not displayed", accountTitle.isDisplayed());
         actionsHelper.clickOnElement(getMyAccount());
-        Thread.sleep(Constants.SHORT_SLEEP);
+        actionsHelper.waitForElementVisibility(profileNameRegistered, driver);
         assertTrue("The profile name is different", profileNameRegistered.getText().equals(data.get("fullName")));
     }
 
