@@ -1,54 +1,45 @@
-
+@VerifyTicket
 Feature: Verify tickets
 
   Background: Login user
-    Given I click on login link
-    When I fill in valid login email and password
-    And I click on submit button
-    Then I should see my profile page
-
-  Scenario: As a registered user I want to verify a sports bet ticket code is correctly displayed
-    Given I am an authenticated user
+    Given I have successfully logged in
     When I click on home menu
     And I click on search input ticket
-    And I fill in a valid sports bet ticket code
-    And I click on verify ticket button
-    And I wait for the pop-up to appear
-    Then I should see correctly the ticket code
 
-  Scenario: As a registered user I want to verify a sports bet ticket status
-    Given I am an authenticated user
-    When I click on home menu
-    And I click on search input ticket
-    And I fill in a valid sports bet ticket code
+  Scenario: Verify if a sports bet ticket code is correctly displayed
+    When I fill in a valid ticket code
     And I click on verify ticket button
-    And I wait for the pop-up to appear
-    Then I should see correctly the ticket status
+    Then Pop-up ticket should appear
+    And I should see correctly the ticket code
 
-  Scenario: As a registered user I want to verify a sports bet ticket max win value
-    Given I am an authenticated user
-    When I click on home menu
-    And I click on search input ticket
-    And I fill in a valid sports bet ticket code
+  Scenario: Verify a sports bet ticket status
+    When I fill in a valid ticket code
     And I click on verify ticket button
-    And I wait for the pop-up to appear
-    Then I should see the ticket max win value is displayed
+    Then Pop-up ticket should appear
+    And I should see correctly the ticket status
 
-  Scenario: As a registered user I want to verify a sports bet ticket max win value
-    Given I am an authenticated user
-    When I click on home menu
-    And I click on search input ticket
-    And I fill in a valid sports bet ticket code
+  Scenario: Verify a sports bet ticket max win value
+    When I fill in a valid ticket code
     And I click on verify ticket button
-    And I wait for the pop-up to appear
-    Then I should see the details of the ticket correctly
+    Then Pop-up ticket should appear
+    And I should see the ticket max win value is displayed
 
-  @VerifyTicket
-  Scenario: As a registered user I want to verify a sports bet ticket max win value
-    Given I am an authenticated user
-    When I click on home menu
-    And I click on search input ticket
-    And I fill in a valid sports bet ticket code
+  Scenario: Verify a sports bet ticket details
+    When I fill in a valid ticket code
     And I click on verify ticket button
-    And I wait for the pop-up to appear
-    Then I should see the max win of the ticket correctly
+    Then Pop-up ticket should appear
+    And I should see the details of the ticket correctly
+
+  Scenario: Verify search input ticket with no code
+    When I click on verify ticket button
+    Then An alert should appear with error message
+
+  Scenario Outline: Verify search input ticket with no code
+    When I fill in an invalid ticket code as <invalidCode>
+    And I click on verify ticket button
+    Then An alert should appear with error message
+
+    Examples:
+      | invalidCode |
+      | 1234        |
+      | aslkj1@@@lk |

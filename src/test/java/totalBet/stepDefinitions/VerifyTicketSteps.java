@@ -20,14 +20,19 @@ public class VerifyTicketSteps {
         verifyTicketPage.clickOnHomeMenu();
     }
 
-    @And("I click on search input ticket")
+    @Then("I click on search input ticket")
     public void clickOnSearchInputTicket() {
         verifyTicketPage.clickOnSearchInputTicket();
     }
 
-    @And("I fill in a valid sports bet ticket code")
-    public void fillInValidSportsBetTicketCode() {
-        verifyTicketPage.fillInValidSportsBetTicketCode(TestData.ticketTestData().getCode());
+    @And("I fill in a valid ticket code")
+    public void fillValidTicketCode() {
+        verifyTicketPage.fillValidTicketCode(TestData.ticketTestData().getCode());
+    }
+
+    @When("^I fill in an invalid ticket code as (.*)$")
+    public void fillInvalidTicketCode(String invalidCode) {
+        verifyTicketPage.fillInvalidTicketCode(invalidCode);
     }
 
     @And("I click on verify ticket button")
@@ -35,12 +40,12 @@ public class VerifyTicketSteps {
         verifyTicketPage.clickOnVerifyTicketButton();
     }
 
-    @And("I wait for the pop-up to appear")
-    public void waitForPopUpToAppear() {
-        verifyTicketPage.waitForPopUpToAppear();
+    @Then("Pop-up ticket should appear")
+    public void popUpTicketShouldAppear() {
+        verifyTicketPage.popUpTicketShouldAppear();
     }
 
-    @Then("I should see correctly the ticket code")
+    @And("I should see correctly the ticket code")
     public void verifyPopUpTicketCodeIsDisplayedCorrectly() {
         verifyTicketPage.verifyPopUpTicketCodeIsDisplayedCorrectly(TestData.ticketTestData().getCode());
     }
@@ -48,6 +53,11 @@ public class VerifyTicketSteps {
     @And("I should see correctly the ticket status")
     public void verifyPopUpTicketStatusIsDisplayedCorrectly() {
         verifyTicketPage.verifyPopUpTicketStatusIsDisplayedCorrectly(TestData.ticketTestData().getStatus());
+    }
+
+    @Then("An alert should appear with error message")
+    public void alertShouldAppearWithErrorMessage() {
+        verifyTicketPage.alertShouldAppearWithErrorMessage();
     }
 
     @Then("I should see the ticket max win value is displayed")
