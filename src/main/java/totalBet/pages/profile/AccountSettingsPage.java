@@ -16,14 +16,13 @@ import static org.junit.Assert.assertTrue;
 public class AccountSettingsPage extends HeaderPage {
 
     WebDriver driver;
+    private ActionsHelper actionsHelper = new ActionsHelper();
 
     public AccountSettingsPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    private ActionsHelper actionsHelper = new ActionsHelper();
 
     @FindBy(xpath = "//*[@class='account-title']")
     private WebElement accountTitle;

@@ -46,7 +46,7 @@ public class ActionsHelper {
     public void waitForElementVisibility(WebElement element, WebDriver driver) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIME_SECONDS));
         int i = 5;
-        while( i != 0) {
+        while (i != 0) {
             try {
                 wait.until(ExpectedConditions.elementToBeClickable(element));
             } catch (Exception e) {
@@ -54,5 +54,15 @@ public class ActionsHelper {
             }
             i--;
         }
+    }
+
+    public boolean isElementDisplayed(WebElement element) throws InterruptedException {
+        boolean isDisplayed = false;
+        try {
+            isDisplayed = element.isDisplayed();
+        } catch (Exception e) {
+        }
+
+        return isDisplayed;
     }
 }

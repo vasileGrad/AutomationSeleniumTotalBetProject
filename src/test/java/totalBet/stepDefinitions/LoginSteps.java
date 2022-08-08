@@ -46,7 +46,7 @@ public class LoginSteps {
     }
 
     @Given("I am an authenticated user")
-    public void verifyAuthenticatedUser() {
+    public void verifyAuthenticatedUser() throws InterruptedException {
         loginPage.verifyAuthenticatedUser();
     }
 

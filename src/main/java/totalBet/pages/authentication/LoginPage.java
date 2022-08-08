@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import totalBet.common.ActionsHelper;
-import totalBet.constants.Constants;
 import totalBet.pages.common.HeaderPage;
 
 import java.util.HashMap;
@@ -15,7 +14,8 @@ import static org.junit.Assert.assertTrue;
 
 public class LoginPage extends HeaderPage {
 
-    WebDriver driver;
+    private WebDriver driver;
+    private ActionsHelper actionsHelper = new ActionsHelper();
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -23,16 +23,12 @@ public class LoginPage extends HeaderPage {
         PageFactory.initElements(driver, this);
     }
 
-    private ActionsHelper actionsHelper = new ActionsHelper();
-
     @FindBy(id = "email")
     private WebElement emailTextbox;
     @FindBy(id = "password")
     private WebElement passwordTextbox;
     @FindBy(xpath = "//*[contains(text(), 'Trimite')]")
     private WebElement submitButton;
-    @FindBy(xpath = "//*[@class='auth-user']")
-    private WebElement profileNameRegistered;
     @FindBy(xpath = "//*[@role='alert']")
     private WebElement emailTakenAlert;
     @FindBy(xpath = "//*[@class='invalid-feedback']")
@@ -55,8 +51,8 @@ public class LoginPage extends HeaderPage {
 
     public void successfullyLoggedIn() throws InterruptedException {
         actionsHelper.clickOnElement(getMyAccount());
-        actionsHelper.waitForElementVisibility(profileNameRegistered, driver);
-        assertTrue("The profile name is different", profileNameRegistered.isDisplayed());
+        actionsHelper.waitForElementVisibility(getProfileNameRegistered(), driver);
+        assertTrue("The profile name is different", getProfileNameRegistered().isDisplayed());
     }
 
     public void clickOnSubmitButton() {
@@ -67,9 +63,10 @@ public class LoginPage extends HeaderPage {
         actionsHelper.clickOnElement(getLogoutButton());
     }
 
-    public void verifyAuthenticatedUser() {
+    public void verifyAuthenticatedUser() throws InterruptedException {
         actionsHelper.clickOnElement(getMyAccount());
-        assertTrue("The profile name is different", profileNameRegistered.isDisplayed());
+        actionsHelper.waitForElementVisibility(getProfileNameRegistered(), driver);
+        assertTrue("The profile name is different", getProfileNameRegistered().isDisplayed());
     }
 
     public void verifyLogoutButton() {
