@@ -26,6 +26,8 @@ public class HeaderPage {
     private WebElement registerLink;
     @FindBy(xpath = "//*[@class='auth-user']")
     private WebElement profileNameRegistered;
+    @FindBy(xpath = "//*[@class='my-account-link'][1]")
+    private WebElement myTicketsLink;
     @FindBy(xpath = "//*[.='Setari cont']")
     private WebElement accountSettingsLink;
     @FindBy(xpath = "//*[@class='logout-button']")
@@ -53,6 +55,10 @@ public class HeaderPage {
 
     public WebElement getProfileNameRegistered() {
         return profileNameRegistered;
+    }
+
+    public WebElement getMyTicketsLink() {
+        return myTicketsLink;
     }
 
     public WebElement getAccountSettingsLink() {

@@ -66,6 +66,8 @@ public class SportsBetPage extends HeaderPage {
     private List<WebElement> ticketEventsRemove;
     @FindBy(xpath = "//button[.='Plasează și salvează']")
     private WebElement placeAndSaveButton;
+    @FindBy(xpath = "//*[@class='pop-up']")
+    private WebElement popUpPlacedTicket;
     @FindBy(xpath = "//div[@class='pop-up-title']")
     private WebElement popUpTitlePlaceTicket;
     @FindBy(xpath = "//*[@class='pop-up-close']")
@@ -86,6 +88,8 @@ public class SportsBetPage extends HeaderPage {
     private WebElement bonus;
     @FindBy(xpath = "//*[@class='bet-odd-value']")
     private List<WebElement> betOddValueList;
+    @FindBy(xpath = "//*[@transform]//*[last()]")
+    private WebElement placedTicketCode;
     @FindBy(xpath = "//*[@class='cookie-close-btn']")
     private WebElement closeCookieButton;
 
@@ -134,6 +138,7 @@ public class SportsBetPage extends HeaderPage {
         String eventCode, eventName, eventDate, oddLabel, oddValue;
         for (int i = 1; i <= numberEvents; i++) {
             actionsHelper.waitForElementVisibility(leagueEvents.get(i), driver);
+            Thread.sleep(Constants.SHORT_SLEEP);
             eventCode = leagueEvents.get(i).findElement(By.xpath("//*[@class='event-code']")).getText();
             eventName = leagueEvents.get(i).findElement(By.xpath("//*[@class='event-name']")).getText();
             eventDate = leagueEvents.get(i).findElement(By.xpath("//*[@class='event-date']")).getText();
@@ -184,6 +189,7 @@ public class SportsBetPage extends HeaderPage {
         actionsHelper.clickOnElement(placeAndSaveButton);
         actionsHelper.waitForElementVisibility(popUpTitlePlaceTicket, driver);
         assertTrue("The sports bet ticket was not placed successfully", popUpTitlePlaceTicket.getText().contains(Constants.SUCCESS));
+        actionsHelper.clickOnElement(popUpClosePlaceTicket);
     }
 
     public void verifyQuickDaysMenuVisibility() throws InterruptedException {
@@ -192,35 +198,30 @@ public class SportsBetPage extends HeaderPage {
     }
 
     public void verifySportsBetTicketDataValueIsCalculatedCorrectly() throws InterruptedException {
+        double totalBetTicketValue, stakeTicketValue, maxWinValueResult, expectedMaxWinBetTicket, actualMaxWinBetTicket;
         actionsHelper.waitForElementVisibility(betOddValueList.get(0), driver);
-        double totalBetTicketValue = actionsHelper.formatDoubleResult(getTotalBetTicket(betOddValueList));
+        totalBetTicketValue = actionsHelper.formatDoubleResult(getTotalBetTicket(betOddValueList));
         assertTrue("Total bet is not correct", Double.valueOf(totalBetValueTicketDataContent.getText()) == totalBetTicketValue);
-
         String betInputValue = betInputTicket.getAttribute(Constants.VALUE);
         String betSumTicketValue = actionsHelper.extractFirstWordFromString(betSumTicketDataContent.getText());
         assertTrue("Bet input value is negative", Double.valueOf(betInputValue) >= 0);
         assertTrue("Bet sum value is not correct", actionsHelper.equals(betInputValue, betSumTicketValue));
-
         assertTrue("Combinations number is not correct", combinationsTicketDataContent.getText().equals(String.valueOf(0)));
-
-        double stakeTicketValue = calculateStakeTicket(betInputValue, TestData.sportsBetTicketTestData());
+        stakeTicketValue = calculateStakeTicket(betInputValue, TestData.sportsBetTicketTestData());
         assertTrue("Stake ticket value is not correct", stakeTicketValue == Double.parseDouble(stakeTicketDataContent.getText()));
-
-        double maxWinValueResult = stakeTicketValue * totalBetTicketValue;
-        if(maxWinValueResult > Constants.MAX_WIN_VALUE) {
+        maxWinValueResult = stakeTicketValue * totalBetTicketValue;
+        if (maxWinValueResult > Constants.MAX_WIN_VALUE) {
             maxWinValueResult = Constants.MAX_WIN_VALUE;
         }
-        double expectedMaxWinBetTicket = actionsHelper.formatDoubleResult(maxWinValueResult);
-        double actualMaxWinBetTicket = Double.parseDouble(actionsHelper.extractFirstWordFromString(maxWinValueTicket.getText()));
-
-        if(expectedMaxWinBetTicket != actualMaxWinBetTicket) {
+        expectedMaxWinBetTicket = actionsHelper.formatDoubleResult(maxWinValueResult);
+        actualMaxWinBetTicket = Double.parseDouble(actionsHelper.extractFirstWordFromString(maxWinValueTicket.getText()));
+        if (expectedMaxWinBetTicket != actualMaxWinBetTicket) {
             if (actionsHelper.isElementDisplayed(bonus)) {
                 int bonusValue = Integer.parseInt(actionsHelper.extractWordFromString(bonus.getText(), 2).replace(Constants.PERCENTAGE, Constants.EMPTY_SPACE));
                 expectedMaxWinBetTicket += expectedMaxWinBetTicket * bonusValue / 100;
                 expectedMaxWinBetTicket = actionsHelper.formatDoubleResult(expectedMaxWinBetTicket);
             }
         }
-
         assertEquals("Total bet ticket value is not correct", Double.valueOf(expectedMaxWinBetTicket), Double.valueOf(actualMaxWinBetTicket));
     }
 
@@ -230,6 +231,7 @@ public class SportsBetPage extends HeaderPage {
         double actualMaxWinBetTicket = Double.parseDouble(actionsHelper.extractFirstWordFromString(maxWinValueTicket.getText()));
         assertTrue("Max win value is not 0 RON", actualMaxWinBetTicket == 0);
     }
+
     public void verifyMaxWinValueIsNaN() {
         String actualMaxWinBetTicket = actionsHelper.extractFirstWordFromString(maxWinValueTicket.getText());
         assertTrue("Max win value is not NaN RON", actualMaxWinBetTicket.equals("NaN"));
@@ -245,7 +247,6 @@ public class SportsBetPage extends HeaderPage {
         for (WebElement betOddValue : betOddValueList) {
             totalBetValue *= Double.parseDouble(betOddValue.getText());
         }
-
         return totalBetValue;
     }
 
