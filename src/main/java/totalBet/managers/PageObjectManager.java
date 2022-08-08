@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import totalBet.pages.authentication.LoginPage;
 import totalBet.pages.authentication.RegistrationPage;
 import totalBet.pages.profile.AccountSettingsPage;
+import totalBet.pages.profile.HistoryTicketsPage;
 import totalBet.pages.ticket.results.VerifyTicketPage;
 import totalBet.pages.ticket.sportsBet.SportsBetPage;
 
@@ -14,6 +15,7 @@ public class PageObjectManager {
     private LoginPage loginPage;
     private SportsBetPage sportsBetPage;
     private AccountSettingsPage accountSettingsPage;
+    private HistoryTicketsPage historyTicketsPage;
     private VerifyTicketPage verifyTicketPage;
 
     public PageObjectManager(WebDriver driver) {
@@ -38,5 +40,9 @@ public class PageObjectManager {
 
     public VerifyTicketPage getVerifyTicketPage() {
         return (verifyTicketPage == null) ? verifyTicketPage = new VerifyTicketPage(driver) : verifyTicketPage;
+    }
+
+    public HistoryTicketsPage getAccountTicketsPage() {
+        return (historyTicketsPage == null) ? historyTicketsPage = new HistoryTicketsPage(driver) : historyTicketsPage;
     }
 }

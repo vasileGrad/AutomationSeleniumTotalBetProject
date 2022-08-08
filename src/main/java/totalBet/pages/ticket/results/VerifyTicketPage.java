@@ -23,14 +23,13 @@ import static org.junit.Assert.assertTrue;
 public class VerifyTicketPage extends HeaderPage {
 
     WebDriver driver;
+    ActionsHelper actionsHelper = new ActionsHelper();
 
     public VerifyTicketPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    ActionsHelper actionsHelper = new ActionsHelper();
 
     @FindBy(xpath = "//*[@class='search-input']")
     private WebElement searchInputTicket;
@@ -76,18 +75,23 @@ public class VerifyTicketPage extends HeaderPage {
     }
 
     public void clickOnSearchInputTicket() {
+        assertTrue("The search input is not displayed", searchInputTicket.isDisplayed());
         actionsHelper.clickOnElement(searchInputTicket);
     }
 
-    public void fillInValidSportsBetTicketCode(String ticketCode) {
-        actionsHelper.fillInText(searchInputTicket, ticketCode);
+    public void fillValidTicketCode(String validTicketCode) {
+        actionsHelper.fillInText(searchInputTicket, validTicketCode);
+    }
+
+    public void fillInvalidTicketCode(String invalidTicketCode) {
+        actionsHelper.fillInText(searchInputTicket, invalidTicketCode);
     }
 
     public void clickOnVerifyTicketButton() {
         actionsHelper.clickOnElement(verifyTicketButton);
     }
 
-    public void waitForPopUpToAppear() {
+    public void popUpTicketShouldAppear() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.LONG_WAIT));
         wait.until(ExpectedConditions.visibilityOf(popUpTitle));
         assertTrue("The pop-up is not displayed", popUpTitle.isEnabled());
@@ -111,7 +115,7 @@ public class VerifyTicketPage extends HeaderPage {
         Ticket actualTicket = getTicketDetailsFromPopUp();
         assertTrue("The ticket code is not correct", expectedTicket.getCode().equals(actualTicket.getCode()));
         assertTrue("Number of events are not equal", expectedTicket.getEvents().size() == actualTicket.getEvents().size());
-        assertTrue("Max win value is not correct", expectedTicket.getMaxWin() == actualTicket.getMaxWin());
+        assertEquals("Max win value is not correct", String.valueOf(expectedTicket.getMaxWin()), String.valueOf(actualTicket.getMaxWin()));
         assertTrue("The bet sum is not correct", expectedTicket.getBetSum() == actualTicket.getBetSum());
         assertTrue("The status is not correct", expectedTicket.getStatus().equals(actualTicket.getStatus()));
     }
@@ -119,6 +123,12 @@ public class VerifyTicketPage extends HeaderPage {
     public void verifyMaxWinTicketIsCorrectlyDisplayed(double expectedMaxWin) {
         String actualMaxWin = actionsHelper.extractWordFromString(maxWin.getText(), 2);
         assertEquals("The max win value is not correctly displayed", String.valueOf(expectedMaxWin), actualMaxWin);
+    }
+
+    public void alertShouldAppearWithErrorMessage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIME_SECONDS));
+        wait.until(ExpectedConditions.alertIsPresent());
+        driver.switchTo().alert().accept();
     }
 
     public Ticket getTicketDetailsFromPopUp() {
@@ -142,7 +152,6 @@ public class VerifyTicketPage extends HeaderPage {
         String dateTicket = actionsHelper.extractWordFromString(placedTicketTime.getText(), 2) + Constants.SPACE;
         dateTicket += actionsHelper.extractWordFromString(placedTicketTime.getText(), 3);
         double maxWinValueTicket = Double.parseDouble(actionsHelper.extractWordFromString(maxWin.getText(), 2));
-        maxWinValueTicket = actionsHelper.formatDoubleResult(maxWinValueTicket);
         int combinationsValueTicket = Integer.parseInt(actionsHelper.extractWordFromString(combinations.getText(), 1));
         double betSumValueTicket = Double.parseDouble(actionsHelper.extractWordFromString(betSum.getText(), 1));
         int betTaxPercentageValueTicket = Integer.parseInt(actionsHelper.extractWordFromString(betTax.getText(), 1).replace(Constants.PERCENTAGE, Constants.EMPTY_SPACE));

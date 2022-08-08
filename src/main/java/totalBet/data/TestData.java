@@ -12,15 +12,15 @@ public class TestData {
 
     public static HashMap<String, String> registrationFormTestData() {
         HashMap<String, String> registrationFormData = new HashMap<>();
-        registrationFormData.put("fullName", "Ana Adi13");
-        registrationFormData.put("email", "ana.adi13@gmail.com");
+        registrationFormData.put("fullName", "Matei Cristian");
+        registrationFormData.put("email", "matei@gmail.com");
         registrationFormData.put("password", "Text1234");
         return registrationFormData;
     }
 
     public static HashMap<String, String> loginFormTestData() {
         HashMap<String, String> loginFormData = new HashMap<>();
-        loginFormData.put("email", "dacekib883@altpano.com");
+        loginFormData.put("email", "matei@gmail.com");
         loginFormData.put("password", "Text1234");
         return loginFormData;
     }
@@ -28,8 +28,8 @@ public class TestData {
     public static HashMap<String, String> accountSettingsFormTestData() {
         HashMap<String, String> accountSettingsFormData = new HashMap<>();
         accountSettingsFormData.put("fullName", "Dace Altpano");
-        accountSettingsFormData.put("email", "dacekib883@altpano.com");
-        accountSettingsFormData.put("phone", "0743123456");
+        accountSettingsFormData.put("email", "matei@gmail.com");
+        accountSettingsFormData.put("phone", "0743000000");
         accountSettingsFormData.put("actualPassword", "Text1234");
         accountSettingsFormData.put("newPassword", "1234");
         return accountSettingsFormData;

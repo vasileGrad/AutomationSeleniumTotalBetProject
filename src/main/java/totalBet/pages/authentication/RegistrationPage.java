@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import totalBet.common.ActionsHelper;
-import totalBet.constants.Constants;
 import totalBet.pages.common.HeaderPage;
 
 import java.util.HashMap;
@@ -15,14 +14,13 @@ import static org.junit.Assert.assertTrue;
 public class RegistrationPage extends HeaderPage {
 
     private WebDriver driver;
+    private ActionsHelper actionsHelper = new ActionsHelper();
 
     public RegistrationPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    private ActionsHelper actionsHelper = new ActionsHelper();
 
     @FindBy(id = "name")
     private WebElement fullNameTextbox;

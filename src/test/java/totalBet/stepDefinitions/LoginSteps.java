@@ -8,7 +8,7 @@ import totalBet.cucumber.TestContext;
 import totalBet.data.TestData;
 import totalBet.pages.authentication.LoginPage;
 
-public class LoginSteps  {
+public class LoginSteps {
     LoginPage loginPage;
 
     public LoginSteps(TestContext testContext) {
@@ -46,7 +46,7 @@ public class LoginSteps  {
     }
 
     @Given("I am an authenticated user")
-    public void verifyAuthenticatedUser() {
+    public void verifyAuthenticatedUser() throws InterruptedException {
         loginPage.verifyAuthenticatedUser();
     }
 
@@ -73,5 +73,13 @@ public class LoginSteps  {
     @Then("I should receive email and password error messages")
     public void receiveEmailAndPasswordErrorMessage() {
         loginPage.receiveEmailAndPasswordErrorMessages();
+    }
+
+    @Given("I have successfully logged in")
+    public void verifySuccessfullyLoggedInUser() throws InterruptedException {
+        loginPage.clickOnLoginLink();
+        loginPage.fillInValidLoginCredentials(TestData.loginFormTestData());
+        loginPage.clickOnSubmitButton();
+        loginPage.successfullyLoggedIn();
     }
 }
