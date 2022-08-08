@@ -35,6 +35,8 @@ public class FileDataReader {
                 Event event = new Event(code, name, date, details, oddLabel, oddValue, status);
                 eventList.add(event);
             }
+            reader.close();
+            fileReader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
