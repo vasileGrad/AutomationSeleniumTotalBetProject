@@ -29,7 +29,6 @@ public class Constants {
     public final static String PERCENTAGE = "%";
     public final static String SPACE = " ";
     public final static String EMPTY_SPACE = "";
-    public final static String SEMICOLON = ";";
 
     public final static double MAX_WIN_VALUE = 50000;
 

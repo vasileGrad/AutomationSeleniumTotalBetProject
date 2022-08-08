@@ -1,6 +1,7 @@
 package totalBet.data;
 
 import totalBet.classes.Event;
+import totalBet.classes.Result;
 import totalBet.classes.Ticket;
 import totalBet.constants.Constants;
 import totalBet.readers.FileDataReader;
@@ -46,5 +47,9 @@ public class TestData {
         List<Event> events = FileDataReader.extractEvents("src/main/java/TicketEvents.txt");
         Ticket ticket = new Ticket("SB221663IB7", "15.06 15:21", 601.32, 1, 4.76, 5, 0.24, 102.64, Constants.BILET_NECASTIGATOR, events);
         return ticket;
+    }
+
+    public static List<Result> resultsTestData() {
+        return FileDataReader.extractResults("src/main/java/ResultEvents.txt");
     }
 }
