@@ -1,4 +1,4 @@
-
+@SportsBetTicket
 Feature: Place tickets
 
   Background: Login user and click on active day menu
@@ -18,7 +18,7 @@ Feature: Place tickets
       | FOTBAL     |
       | TENIS      |
 
-  @SportsBetTicket
+
   Scenario Outline: Create a sports bet ticket and verify the ticket data value is calculated correctly with valid bet input
     When I click on the current date
     And I click on the first ticket button from the ticket selector

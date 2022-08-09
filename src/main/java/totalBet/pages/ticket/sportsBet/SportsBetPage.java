@@ -137,8 +137,7 @@ public class SportsBetPage extends HeaderPage {
         int oddSize, randomOdd, numberEvents = Integer.parseInt(data.get("numberEvents"));
         String eventCode, eventName, eventDate, oddLabel, oddValue;
         for (int i = 1; i <= numberEvents; i++) {
-            actionsHelper.waitForElementVisibility(leagueEvents.get(i), driver);
-            Thread.sleep(Constants.SHORT_SLEEP);
+            actionsHelper.waitForElementsVisibility(leagueEvents, driver);
             eventCode = leagueEvents.get(i).findElement(By.xpath("//*[@class='event-code']")).getText();
             eventName = leagueEvents.get(i).findElement(By.xpath("//*[@class='event-name']")).getText();
             eventDate = leagueEvents.get(i).findElement(By.xpath("//*[@class='event-date']")).getText();
@@ -148,14 +147,17 @@ public class SportsBetPage extends HeaderPage {
             oddSize = oddLabels.size();
             randomOdd = getRandom(oddSize);
             WebElement oddEvent = oddEvents.get(randomOdd);
-            actionsHelper.waitForElementVisibility(oddEvent, driver);
+            actionsHelper.waitForElementClickable(oddEvent, driver);
             actionsHelper.clickOnElement(oddEvent);
+            if (i % 4 == 0) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", oddEvent);
+            }
             oddLabel = oddLabels.get(randomOdd).getText();
             oddValue = oddValues.get(randomOdd).getText();
             eventsSelected.add(new Event(Integer.parseInt(eventCode), eventName, eventDate, null, oddLabel, Double.parseDouble(oddValue), null));
-            if (i % 2 == 0) {
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", oddEvent);
-            }
+            //if (i % 2 == 0) {
+                //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", oddEvent);
+            //}
         }
     }
 
@@ -199,7 +201,7 @@ public class SportsBetPage extends HeaderPage {
 
     public void verifySportsBetTicketDataValueIsCalculatedCorrectly() throws InterruptedException {
         double totalBetTicketValue, stakeTicketValue, maxWinValueResult, expectedMaxWinBetTicket, actualMaxWinBetTicket;
-        actionsHelper.waitForElementVisibility(betOddValueList.get(0), driver);
+        actionsHelper.waitForElementsVisibility(betOddValueList, driver);
         totalBetTicketValue = actionsHelper.formatDoubleResult(getTotalBetTicket(betOddValueList));
         assertTrue("Total bet is not correct", Double.valueOf(totalBetValueTicketDataContent.getText()) == totalBetTicketValue);
         String betInputValue = betInputTicket.getAttribute(Constants.VALUE);

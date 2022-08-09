@@ -81,7 +81,7 @@ public class ResultsPage extends HeaderPage {
             String time = result.getTime();
             String literalMonth = getMonth(Integer.parseInt(month)).toLowerCase();
             actionsHelper.clickOnElement(calendarToggle);
-            actionsHelper.waitForElementVisibility(monthYearButton, driver);
+            actionsHelper.waitForElementClickable(monthYearButton, driver);
             actionsHelper.clickOnElement(monthYearButton);
             WebElement monthButton = calendarYearViewMonths.findElement(By.xpath("//*[text()='" + literalMonth + "']"));
             actionsHelper.clickOnElement(monthButton);
@@ -95,7 +95,7 @@ public class ResultsPage extends HeaderPage {
 
             for (WebElement sportTitle : sportTitles) {
                 if (sportTitle.getText().equals(sportTitleValue)) {
-                    actionsHelper.waitForElementVisibility(sportTitle, driver);
+                    actionsHelper.waitForElementClickable(sportTitle, driver);
                     actionsHelper.clickOnElement(sportTitle);
                     break;
                 }

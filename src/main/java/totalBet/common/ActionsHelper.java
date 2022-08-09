@@ -44,6 +44,18 @@ public class ActionsHelper {
         return words[index];
     }
 
+    public void waitForElementClickable(WebElement element, WebDriver driver) throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIME_SECONDS));
+        int i = Constants.SMALL_ITERATIONS;
+        while (i != 0) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(element));
+            } catch (Exception e) {
+                Thread.sleep(Constants.LONG_SLEEP);
+            }
+            i--;
+        }
+    }
     public void waitForElementVisibility(WebElement element, WebDriver driver) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIME_SECONDS));
         int i = Constants.SMALL_ITERATIONS;
