@@ -12,8 +12,11 @@ import totalBet.data.TestData;
 import totalBet.enums.Year;
 import totalBet.pages.common.HeaderPage;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ResultsPage extends HeaderPage {
@@ -71,7 +74,6 @@ public class ResultsPage extends HeaderPage {
 
     public void verifyListWithAllEventResults() throws InterruptedException {
         for (Result result : results) {
-            String a = result.getDate();
             String[] date = result.getDate().split("/");
             String day = date[0];
             String month = date[1];
@@ -101,12 +103,19 @@ public class ResultsPage extends HeaderPage {
 
             String eventCode = "", eventDate = "", eventName = "";
             int eventCodeSize = eventCodes.size();
+            LinkedHashMap<String, String> halves = new LinkedHashMap<>();
             for (int i = 0; i < eventCodeSize; i++) {
-                actionsHelper.waitForElementVisibility(eventCodes.get(i), driver);
+                actionsHelper.waitForElementsVisibility(eventCodes, driver);
                 if (eventCodes.get(i).getText().equals(codeValue)) {
                     eventCode = eventCodes.get(i).getText().trim();
                     eventDate = eventDates.get(i).getText().trim();
                     eventName = eventNames.get(i).getText().trim();
+                    List<WebElement> resultLabels = resultsValues.get(i).findElements(By.xpath("(//*[@class='results-values'])[" + (i + 1) + "]//*[@class='result-label']"));
+                    List<WebElement> resultValues = resultsValues.get(i).findElements(By.xpath("(//*[@class='results-values'])[" + (i + 1) + "]//*[@class='result-value']"));
+                    int resultLabelsSize = resultLabels.size();
+                    for (int j = 0; j < resultLabelsSize; j++) {
+                        halves.put(resultLabels.get(j).getText(), resultValues.get(j).getText());
+                    }
                     break;
                 }
             }
@@ -115,6 +124,11 @@ public class ResultsPage extends HeaderPage {
             assertTrue("The event code is not correct", codeValue.equals(eventCode));
             assertTrue("The event name is not correct", nameValue.equals(eventName));
             assertTrue("The event date and time is not correct", expectedDateTime.equals(eventDate));
+
+            Set<String> keys = halves.keySet();
+            for (String key : keys) {
+                assertEquals("The half is not correct", result.getHalves().get(key), halves.get(key));
+            }
 
             actionsHelper.clickOnElement(calendarToggle);
         }

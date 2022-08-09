@@ -9,6 +9,7 @@ import totalBet.constants.Constants;
 import java.text.DecimalFormat;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.List;
 
 public class ActionsHelper {
 
@@ -45,10 +46,23 @@ public class ActionsHelper {
 
     public void waitForElementVisibility(WebElement element, WebDriver driver) throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIME_SECONDS));
-        int i = 5;
+        int i = Constants.SMALL_ITERATIONS;
         while (i != 0) {
             try {
                 wait.until(ExpectedConditions.elementToBeClickable(element));
+            } catch (Exception e) {
+                Thread.sleep(Constants.LONG_SLEEP);
+            }
+            i--;
+        }
+    }
+
+    public void waitForElementsVisibility(List<WebElement> elements, WebDriver driver) throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.SHORT_TIME_SECONDS));
+        int i = Constants.SMALL_ITERATIONS;
+        while (i != 0) {
+            try {
+                wait.until(ExpectedConditions.visibilityOfAllElements(elements));
             } catch (Exception e) {
                 Thread.sleep(Constants.LONG_SLEEP);
             }

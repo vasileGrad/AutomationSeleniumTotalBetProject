@@ -13,6 +13,8 @@ public class Constants {
     public final static int SHORT_TIME_SECONDS = 5;
     public final static int LONG_TIME_SECONDS = 10;
 
+    public final static int SMALL_ITERATIONS = 5;
+
     public final static String SUCCESS = "succes";
     public final static String VALUE = "value";
     public final static String TITLE = "title";
