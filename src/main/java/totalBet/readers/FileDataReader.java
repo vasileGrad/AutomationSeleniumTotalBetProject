@@ -8,10 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FileDataReader {
 
@@ -59,15 +56,16 @@ public class FileDataReader {
             while ((currentLine = reader.readLine()) != null) {
                 String[] resultFields = currentLine.split(",");
                 String date = resultFields[0];
-                String sportTitle = resultFields[1];
-                String code = resultFields[2];
-                String name = resultFields[3];
-                Map<String, String> halves = new HashMap<>();
+                String time = resultFields[1];
+                String sportTitle = resultFields[2];
+                String code = resultFields[3];
+                String name = resultFields[4];
+                LinkedHashMap<String, String> halves = new LinkedHashMap<>();
                 int resultFieldsLength = resultFields.length;
                 for (int i = 5; i < resultFieldsLength; i += 2) {
                     halves.put(resultFields[i], resultFields[i + 1]);
                 }
-                Result result = new Result(date, sportTitle, code, name, halves);
+                Result result = new Result(date, time, sportTitle, code, name, halves);
                 resultsList.add(result);
             }
             reader.close();

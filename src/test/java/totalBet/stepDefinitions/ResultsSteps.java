@@ -23,7 +23,7 @@ public class ResultsSteps {
     }
 
     @Then("I should have a list with all the event results")
-    public void verifyListWithAllEventResults() {
+    public void verifyListWithAllEventResults() throws InterruptedException {
         resultsPage.verifyListWithAllEventResults();
     }
 }
