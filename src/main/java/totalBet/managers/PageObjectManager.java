@@ -5,6 +5,7 @@ import totalBet.pages.authentication.LoginPage;
 import totalBet.pages.authentication.RegistrationPage;
 import totalBet.pages.profile.AccountSettingsPage;
 import totalBet.pages.profile.HistoryTicketsPage;
+import totalBet.pages.ticket.results.ResultsPage;
 import totalBet.pages.ticket.results.VerifyTicketPage;
 import totalBet.pages.ticket.sportsBet.SportsBetPage;
 
@@ -14,9 +15,10 @@ public class PageObjectManager {
     private RegistrationPage registrationPage;
     private LoginPage loginPage;
     private SportsBetPage sportsBetPage;
+    private VerifyTicketPage verifyTicketPage;
+    private ResultsPage resultsPage;
     private AccountSettingsPage accountSettingsPage;
     private HistoryTicketsPage historyTicketsPage;
-    private VerifyTicketPage verifyTicketPage;
 
     public PageObjectManager(WebDriver driver) {
         this.driver = driver;
@@ -34,12 +36,16 @@ public class PageObjectManager {
         return (sportsBetPage == null) ? sportsBetPage = new SportsBetPage(driver) : sportsBetPage;
     }
 
-    public AccountSettingsPage getAccountSettingsPage() {
-        return (accountSettingsPage == null) ? accountSettingsPage = new AccountSettingsPage(driver) : accountSettingsPage;
-    }
-
     public VerifyTicketPage getVerifyTicketPage() {
         return (verifyTicketPage == null) ? verifyTicketPage = new VerifyTicketPage(driver) : verifyTicketPage;
+    }
+
+    public ResultsPage getResultsPage() {
+        return (resultsPage == null) ? resultsPage = new ResultsPage(driver) : resultsPage;
+    }
+
+    public AccountSettingsPage getAccountSettingsPage() {
+        return (accountSettingsPage == null) ? accountSettingsPage = new AccountSettingsPage(driver) : accountSettingsPage;
     }
 
     public HistoryTicketsPage getAccountTicketsPage() {

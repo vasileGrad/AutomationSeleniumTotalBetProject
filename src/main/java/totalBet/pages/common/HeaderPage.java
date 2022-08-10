@@ -18,6 +18,8 @@ public class HeaderPage {
     private WebElement homeMenu;
     @FindBy(xpath = "//*[.='Pariuri Sportive']")
     private WebElement sportsBetLinkMenu;
+    @FindBy(xpath = "//*[.='Rezultate']")
+    private WebElement resultsLinkMenu;
     @FindBy(xpath = "//*[.='Contul meu']")
     private WebElement myAccount;
     @FindBy(xpath = "//*[.='Autentificare']")
@@ -39,6 +41,10 @@ public class HeaderPage {
 
     public WebElement getSportsBetLinkMenu() {
         return sportsBetLinkMenu;
+    }
+
+    public WebElement getResultsLinkMenu() {
+        return resultsLinkMenu;
     }
 
     public WebElement getMyAccount() {

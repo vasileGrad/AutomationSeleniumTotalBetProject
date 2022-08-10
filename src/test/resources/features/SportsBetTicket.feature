@@ -1,4 +1,4 @@
-
+@SportsBetTicket
 Feature: Place tickets
 
   Background: Login user and click on active day menu
@@ -18,7 +18,7 @@ Feature: Place tickets
       | FOTBAL     |
       | TENIS      |
 
-  @SportsBetTicket
+
   Scenario Outline: Create a sports bet ticket and verify the ticket data value is calculated correctly with valid bet input
     When I click on the current date
     And I click on the first ticket button from the ticket selector
@@ -30,9 +30,8 @@ Feature: Place tickets
     Examples:
       | sportTitle | betInput |
       | FOTBAL     | 100      |
-      | FOTBAL     | 10       |
 
-  Scenario Outline: Create a sports bet ticket and verify the ticket data value is calculated correctly with negative bet input
+  Scenario Outline: Create a sports bet ticket with negative number and verify that you get an error message
     When I click on the current date
     And I click on the first ticket button from the ticket selector
     And I choose sport title as <sportTitle>
@@ -92,6 +91,7 @@ Feature: Place tickets
       | sportTitle |
       | BASCHET    |
 
+
   Scenario Outline: Create and place a sports bet ticket successfully
     When I click on the current date
     And I click on the first ticket button from the ticket selector
@@ -102,4 +102,3 @@ Feature: Place tickets
     Examples:
       | sportTitle |
       | FOTBAL     |
-      | TENIS      |

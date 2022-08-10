@@ -52,7 +52,7 @@ public class HistoryTicketsPage extends HeaderPage {
     }
 
     public void clickOnFirstTicketDetailsFromList() throws InterruptedException {
-        actionsHelper.waitForElementVisibility(ticketsHistory, driver);
+        actionsHelper.waitForElementClickable(ticketsHistory, driver);
         actionsHelper.clickOnElement(accountDataItemsView.get(0));
     }
 
