@@ -31,7 +31,6 @@ Feature: Login Form
       | email                  | password |
       | wrong.email1@gmail.com | Text1234 |
       | wrong.email2@gmail.com | Text1234 |
-      | wrong.email3@gmail.com | Text1234 |
 
   Scenario Outline: As a user I want to login with email and invalid password
     Given I click on login link
@@ -41,6 +40,5 @@ Feature: Login Form
 
     Examples:
       | email                  | password |
-      | dacekib883@altpano.com | 1234     |
       | dacekib883@altpano.com | 1234     |
       | dacekib883@altpano.com | 1234     |

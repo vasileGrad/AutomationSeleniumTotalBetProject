@@ -35,15 +35,15 @@ public class ResultsPage extends HeaderPage {
     private WebElement calendarToggle;
     @FindBy(xpath = "//*[contains(@class,'react-calendar date-range-picker')]")
     private WebElement dateRangePicker;
-    @FindBy(xpath = "//*[@class='react-calendar__navigation__arrow react-calendar__navigation__prev2-button']")
+    @FindBy(xpath = "//*[contains(@class,'react-calendar__navigation__prev2-button')]")
     private WebElement prev2Button;
-    @FindBy(xpath = "//*[@class='react-calendar__navigation__arrow react-calendar__navigation__prev-button']")
+    @FindBy(xpath = "//*[contains(@class,'react-calendar__navigation__prev-button')]")
     private WebElement prevButton;
     @FindBy(xpath = "//*[@class='react-calendar__navigation__label']")
     private WebElement monthYearButton;
-    @FindBy(xpath = "//*[@class='react-calendar__navigation__arrow react-calendar__navigation__next-button']")
+    @FindBy(xpath = "//*[contains(@class,'react-calendar__navigation__next-button')]")
     private WebElement nextButton;
-    @FindBy(xpath = "//*[@class='react-calendar__navigation__arrow react-calendar__navigation__next2-button']")
+    @FindBy(xpath = "//*[contains(@class,'react-calendar__navigation__next2-button')]")
     private WebElement next2Button;
     @FindBy(xpath = "//*[@class='react-calendar__year-view__months']")
     private WebElement calendarYearViewMonths;
