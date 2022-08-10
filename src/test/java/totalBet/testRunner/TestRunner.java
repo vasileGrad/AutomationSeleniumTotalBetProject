@@ -12,7 +12,17 @@ import org.junit.runner.RunWith;
                 "pretty",
                 "json:target/cucumber.json",
                 "html:target/cucumber.html"},
-        tags = "@SportsBetTicket"
+        tags = "@Login"
 )
 public class TestRunner {
 }
+
+
+// @Registration
+// @Login
+// @AccountSettings
+// @SportsBetTicket
+// @HistoryTickets
+// @VerifyTicket
+// @Results
+

@@ -8,8 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import totalBet.classes.Result;
 import totalBet.common.ActionsHelper;
+import totalBet.common.CommonHelper;
 import totalBet.data.TestData;
-import totalBet.enums.Year;
 import totalBet.pages.common.HeaderPage;
 
 import java.util.LinkedHashMap;
@@ -22,6 +22,7 @@ import static org.junit.Assert.assertTrue;
 public class ResultsPage extends HeaderPage {
     private WebDriver driver;
     private ActionsHelper actionsHelper = new ActionsHelper();
+    private CommonHelper commonHelper = new CommonHelper();
     private List<Result> results;
 
     public ResultsPage(WebDriver driver) {
@@ -79,7 +80,7 @@ public class ResultsPage extends HeaderPage {
             String month = date[1];
             int year = Integer.parseInt(date[2]);
             String time = result.getTime();
-            String literalMonth = getMonth(Integer.parseInt(month)).toLowerCase();
+            String literalMonth = commonHelper.getMonth(Integer.parseInt(month)).toLowerCase();
             actionsHelper.clickOnElement(calendarToggle);
             actionsHelper.waitForElementClickable(monthYearButton, driver);
             actionsHelper.clickOnElement(monthYearButton);
@@ -131,37 +132,6 @@ public class ResultsPage extends HeaderPage {
             }
 
             actionsHelper.clickOnElement(calendarToggle);
-        }
-    }
-
-    public String getMonth(int month) {
-        switch (month) {
-            case 1:
-                return Year.IANUARIE.toString();
-            case 2:
-                return Year.FEBRUARIE.toString();
-            case 3:
-                return Year.MARTIE.toString();
-            case 4:
-                return Year.APRILIE.toString();
-            case 5:
-                return Year.MAI.toString();
-            case 6:
-                return Year.IUNIE.toString();
-            case 7:
-                return Year.IULIE.toString();
-            case 8:
-                return Year.AUGUST.toString();
-            case 9:
-                return Year.SEPTEMBRIE.toString();
-            case 10:
-                return Year.OCTOMBRIE.toString();
-            case 11:
-                return Year.NOIEMBRIE.toString();
-            case 12:
-                return Year.DECEMBRIE.toString();
-            default:
-                return null;
         }
     }
 

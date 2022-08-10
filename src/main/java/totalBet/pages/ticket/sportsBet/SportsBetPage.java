@@ -155,9 +155,6 @@ public class SportsBetPage extends HeaderPage {
             oddLabel = oddLabels.get(randomOdd).getText();
             oddValue = oddValues.get(randomOdd).getText();
             eventsSelected.add(new Event(Integer.parseInt(eventCode), eventName, eventDate, null, oddLabel, Double.parseDouble(oddValue), null));
-            //if (i % 2 == 0) {
-                //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", oddEvent);
-            //}
         }
     }
 
@@ -191,6 +188,7 @@ public class SportsBetPage extends HeaderPage {
         actionsHelper.clickOnElement(placeAndSaveButton);
         actionsHelper.waitForElementVisibility(popUpTitlePlaceTicket, driver);
         assertTrue("The sports bet ticket was not placed successfully", popUpTitlePlaceTicket.getText().contains(Constants.SUCCESS));
+        actionsHelper.waitForElementClickable(popUpClosePlaceTicket, driver);
         actionsHelper.clickOnElement(popUpClosePlaceTicket);
     }
 

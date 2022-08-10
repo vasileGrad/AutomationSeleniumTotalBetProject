@@ -13,8 +13,8 @@ public class TestData {
 
     public static HashMap<String, String> registrationFormTestData() {
         HashMap<String, String> registrationFormData = new HashMap<>();
-        registrationFormData.put("fullName", "Matei Cristian2");
-        registrationFormData.put("email", "matei2@gmail.com");
+        registrationFormData.put("fullName", "Matei Cristian4");
+        registrationFormData.put("email", "matei4@gmail.com");
         registrationFormData.put("password", "Text1234");
         return registrationFormData;
     }
@@ -28,7 +28,7 @@ public class TestData {
 
     public static HashMap<String, String> accountSettingsFormTestData() {
         HashMap<String, String> accountSettingsFormData = new HashMap<>();
-        accountSettingsFormData.put("fullName", "Dace Altpano");
+        accountSettingsFormData.put("fullName", "Matei Cristian");
         accountSettingsFormData.put("email", "matei@gmail.com");
         accountSettingsFormData.put("phone", "0743000000");
         accountSettingsFormData.put("actualPassword", "Text1234");
@@ -38,7 +38,7 @@ public class TestData {
 
     public static HashMap<String, String> sportsBetTicketTestData() {
         HashMap<String, String> sportsBetTicketData = new HashMap<>();
-        sportsBetTicketData.put("numberEvents", "5");
+        sportsBetTicketData.put("numberEvents", "4");
         sportsBetTicketData.put("ticketTax", "0.05");
         return sportsBetTicketData;
     }
