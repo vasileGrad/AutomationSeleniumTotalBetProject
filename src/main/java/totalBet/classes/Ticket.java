@@ -47,63 +47,15 @@ public class Ticket {
         return maxWin;
     }
 
-    public void setMaxWin(double maxWin) {
-        this.maxWin = maxWin;
-    }
-
-    public int getCombinations() {
-        return combinations;
-    }
-
-    public void setCombinations(int combinations) {
-        this.combinations = combinations;
-    }
-
     public double getBetSum() {
         return betSum;
-    }
-
-    public void setBetSum(double betSum) {
-        this.betSum = betSum;
-    }
-
-    public int getBetTaxValue() {
-        return betTaxValue;
-    }
-
-    public void setBetTaxValue(int betTaxValue) {
-        this.betTaxValue = betTaxValue;
-    }
-
-    public double getBetTaxSum() {
-        return betTaxSum;
-    }
-
-    public void setBetTaxSum(double betTaxSum) {
-        this.betTaxSum = betTaxSum;
-    }
-
-    public double getTotalBetValue() {
-        return totalBetValue;
-    }
-
-    public void setTotalBetValue(double totalBetValue) {
-        this.totalBetValue = totalBetValue;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public List<Event> getEvents() {
         return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
     }
 }
