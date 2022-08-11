@@ -6,6 +6,7 @@ Feature: Verify History Tickets
     When I click on my tickets link
     Then I should see the history tickets option in the left account menu
 
+  @SmokeTest
   Scenario: Verify ticket code is correct when I click on the first ticket details
     When I click on the first ticket details from the list
     Then I should see the correct ticket code in the pop-up displayed correctly

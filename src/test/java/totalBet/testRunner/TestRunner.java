@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
                 "pretty",
                 "json:target/cucumber.json",
                 "html:target/cucumber.html"},
-        tags = "@Login"
+        tags = "@SmokeTest"
 )
 public class TestRunner {
 }
@@ -26,3 +26,6 @@ public class TestRunner {
 // @VerifyTicket
 // @Results
 
+// @SmokeTest
+
+// SB221663IB7   - Ticket Code

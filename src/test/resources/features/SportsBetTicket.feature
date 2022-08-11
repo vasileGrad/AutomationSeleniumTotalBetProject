@@ -7,7 +7,7 @@ Feature: Place tickets
     Then I should see the active days menu
 
 
-  Scenario Outline: Create bet events and verify that the correct number of events appear in the ticket bets container
+  Scenario Outline: Add bet events and verify that the correct number of events appear in the ticket bets container
     When I click on the current date
     And I click on the first ticket button from the ticket selector
     And I choose sport title as <sportTitle>

@@ -5,7 +5,7 @@ Feature: Check event results
     When I click on results menu
     Then I should see the active days menu
 
-  @Results
-  Scenario: Verify event results are correctly shown
+  @Results @SmokeTest
+  Scenario: Verify that the event results are correctly shown
     When I read the event results from the file
     Then I should have a list with all the event results
