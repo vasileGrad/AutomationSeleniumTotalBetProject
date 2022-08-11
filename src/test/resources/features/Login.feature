@@ -32,7 +32,8 @@ Feature: Login Form
       | wrong.email1@gmail.com | Text1234 |
       | wrong.email2@gmail.com | Text1234 |
 
-  Scenario Outline: Login with email and invalid password
+  @Regression
+  Scenario Outline: Login with valid email and invalid password
     Given I click on login link
     When I fill valid email as <email> and invalid password as <password>
     And I click on submit button

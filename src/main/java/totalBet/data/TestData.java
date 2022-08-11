@@ -13,8 +13,8 @@ public class TestData {
 
     public static HashMap<String, String> registrationFormTestData() {
         HashMap<String, String> registrationFormData = new HashMap<>();
-        registrationFormData.put("fullName", "Matei Cristian4");
-        registrationFormData.put("email", "matei4@gmail.com");
+        registrationFormData.put("fullName", "Matei Cristian9");
+        registrationFormData.put("email", "matei9@gmail.com");
         registrationFormData.put("password", "Text1234");
         return registrationFormData;
     }
