@@ -33,6 +33,26 @@
             <version>RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.3.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>7.3.3</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Using PicoContainer to share state between steps in a scenario -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>7.3.3</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
