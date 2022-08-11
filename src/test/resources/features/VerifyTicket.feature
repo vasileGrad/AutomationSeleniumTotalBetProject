@@ -34,7 +34,7 @@ Feature: Verify tickets
     When I click on verify ticket button
     Then An alert should appear with error message
 
-  Scenario Outline: Verify search input ticket with no code
+  Scenario Outline: Verify search input ticket with a wrong code
     When I fill in an invalid ticket code as <invalidCode>
     And I click on verify ticket button
     Then An alert should appear with error message

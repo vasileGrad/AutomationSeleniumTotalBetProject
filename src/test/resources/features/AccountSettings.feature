@@ -7,20 +7,20 @@ Feature: Account settings
     Then I should see my profile page
 
   @AccountSettings
-  Scenario: As a registered user I want to see my account settings page
+  Scenario: Open my account settings page
     Given I am an authenticated user
     When I click on account settings link
     Then I should see the account settings page
 
   @AccountSettings
-  Scenario: As a registered user I want to verify my profile details on my account settings page
+  Scenario: Verify my profile details on my account settings page
     Given I am an authenticated user
     When I click on account settings link
     Then I should see the account settings page
     And I should have the same name and email
 
   @AccountSettings
-  Scenario: As a registered user I want to change the phone number with a valid number on my account settings page
+  Scenario: Change the phone number with a valid number on my account settings page
     Given I am an authenticated user
     When I click on account settings link
     And I change the phone number
@@ -28,7 +28,7 @@ Feature: Account settings
     Then I should see the phone number saved
 
   @Ignore
-  Scenario: As a registered user I want to change the actual password with a new password my account settings page
+  Scenario: Change the actual password with a new password my account settings page
     Given I am an authenticated user
     When I click on account settings link
     And I change the actual password with a new password
